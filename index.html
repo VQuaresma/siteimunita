@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imunittá - Vacina e Saúde</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <!-- Substitua o src abaixo pelo caminho da sua logo -->
+                <img src="logo-imunitta.png" alt="Imunittá - Vacina e Saúde" class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">Sobre</a>
+                    </li>
+                    <li>
+                        <a href="#">Serviços</a>
+                    </li>
+                    <li>
+                        <a href="#">Contato</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="banner-slider">
+        <div class="banner-slide active">
+            <div class="banner-content">
+                <h2> Proteja sua Família</h2>
+                <p>Vacinas de qualidade para todas as idades</p>
+                <a href="#contact" class="btn btn-primary">Agende Agora</a>
+            </div>
+        </div>
+        <div class="banner-slide">
+            <div class="banner-content">
+                <h2> Cuidado Especializado</h2>
+                <p>Equipe médica qualificada e atendimento humanizado</p>
+                <a href="https://wa.me/5591998174787" class="btn btn-primary" target="_blank">Fale Conosco</a>
+            </div>
+        </div>
+        </div>
+        
+        <button class="banner-nav prev" onclick="changeSlide(-1)">‹</button>
+        <button class="banner-nav next" onclick="changeSlide(1)">›</button>
+        
+        <div class="banner-indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Cuidando da sua Saúde com Carinho</h1>
+            <p>Proteja você e sua família com vacinas de qualidade e atendimento humanizado</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                     WhatsApp
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    📅 Agendar Consulta
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💉</div>
+                    <h3>Vacinação</h3>
+                    <p>Vacinas para todas as idades, do recém-nascido ao idoso, com segurança e qualidade garantidas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👶</div>
+                    <h3>Pediatria</h3>
+                    <p>Cuidado especializado para a saúde dos pequenos, com acompanhamento completo do desenvolvimento.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏥</div>
+                    <h3>Clínica Geral</h3>
+                    <p>Atendimento médico completo para toda a família, com profissionais qualificados.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>Checkup</h3>
+                    <p>Exames preventivos e avaliação completa da sua saúde para uma vida mais tranquila.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>Sobre a Imunittá</h2>
+                <p>A Clínica Imunittá nasceu com o propósito de oferecer cuidados de saúde com excelência e humanização. Nossa equipe multidisciplinar está preparada para atender você e sua família com carinho e profissionalismo.</p>
+                <p>Acreditamos que a prevenção é o melhor remédio. Por isso, oferecemos um ambiente acolhedor e seguro, com tecnologia de ponta e as melhores práticas em saúde.</p>
+                <p>Venha nos conhecer e descubra como podemos cuidar melhor de você!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Agende sua Consulta</h2>
+            <p>Entre em contato conosco e garanta o melhor cuidado para sua saúde</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta" class="btn btn-primary" target="_blank">
+                    📱 Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Imunittá - Vacina e Saúde. Todos os direitos reservados.</p>
+            <p>Cuidando da sua saúde com amor e dedicação ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            currentSlide = (n + totalSlides) % totalSlides;
+            
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+        }
+
+        // Auto-play do banner
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Smooth scroll para os links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
