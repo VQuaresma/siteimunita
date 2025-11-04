@@ -6,6 +6,9 @@
     <title>Imunittá - Vacina e Saúde</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -14,7 +17,7 @@
                 <!-- Substitua o src abaixo pelo caminho da sua logo -->
                 <img src="logo-imunitta.png" alt="Imunittá - Vacina e Saúde" class="logo">
             </div>
-            <nav>
+            <nav class="nav-text">
                 <ul>
                     <li>
                         <a href="#">Sobre</a>
@@ -45,6 +48,13 @@
                 <a href="https://wa.me/5591998174787" class="btn btn-primary" target="_blank">Fale Conosco</a>
             </div>
         </div>
+        <div class="banner-slide">
+            <div class="banner-content">
+                <h2> Cuidado Especializado</h2>
+                <p>Equipe médica qualificada e atendimento humanizado</p>
+                <a href="https://wa.me/5591998174787" class="btn btn-primary" target="_blank">Fale Conosco</a>
+            </div>
+        </div>
         </div>
         
         <button class="banner-nav prev" onclick="changeSlide(-1)">‹</button>
@@ -57,21 +67,38 @@
         </div>
     </section>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Cuidando da sua Saúde com Carinho</h1>
-            <p>Proteja você e sua família com vacinas de qualidade e atendimento humanizado</p>
-            <div class="cta-buttons">
-                <a href="https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta" class="btn btn-primary" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                     WhatsApp
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    📅 Agendar Consulta
+    <section class="location-section">
+        <h2 class="section-title">Onde Encontrar a Imunittá?</h2>
+    <div class="container">
+        
+        <div class="grid-layout-4-columns">
+            <div class="grid-item location-image-full">
+                <img src="ab3141ee-983b-423d-9a35-85b7d66f041c.png" alt="Fachada da Clínica Imunittá">
+            </div>
+
+            <div class="grid-item location-info-column">
+                <h3>Nosso Endereço:</h3>
+                <p>Avenida Agenor Gonçalves de Paiva 10, Esquina com Rua Itacaiúnas,</p>
+                <p>Bairro Alto Bonito II, QD 47, LT 10</p>
+                <p>Canaã dos Carajás - PA, 68352-005</p>
+                <a href="https://www.google.com/maps/place/Imunitt%C3%A1+Vacina+e+Sa%C3%BAde/@-6.5234705,-49.8453691,17.37z/data=!4m6!3m5!1s0x92dd9d386dd5dfb3:0xcc0d307d0620c9ee!8m2!3d-6.5234014!4d-49.8440962!16s%2Fg%2F11x_pp933d?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-secondary btn-small">
+                    <i class="fas fa-map-marker-alt"></i> Traçar Rota
                 </a>
             </div>
+
+            <div class="grid-item location-info-column">
+                <h3>Horário de Funcionamento:</h3>
+                <p>Segunda a Sexta: 08h00 - 18h00</p>
+                <p>Sábados: 09h00 - 13h00</p>
+                <a href="https://wa.me/5591998174787" class="btn btn-primary btn-small" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            </div>
+            
+            
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="services" id="services">
         <div class="container">

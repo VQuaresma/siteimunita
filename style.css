@@ -5,7 +5,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "DM Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
             line-height: 1.6;
             color: #333;
         }
@@ -20,6 +23,7 @@
         }
 
         .container {
+            
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
@@ -54,9 +58,9 @@
     /* Retira o sublinhado dos links */
     text-decoration: none;
     /* Define a cor do texto (adapte à sua paleta) */
-    color: #5A8EA9; /* Um branco suave, similar ao que aparece na sua imagem do código */
+    color: #466d83; /* Um branco suave, similar ao que aparece na sua imagem do código */
     /* Define a fonte e tamanho (opcional) */
-    font-size: 1rem;
+    font-size: 20px;
     font-weight: 500;
     /* Adiciona um pequeno preenchimento interno (padding) para a área de clique */
     padding: 5px 0;
@@ -69,27 +73,136 @@ nav ul li a:hover {
     color: #27aee3; /* Exemplo de cor de destaque (azul) */
 }
 
-        .hero {
-            background: linear-gradient(135deg, #E8F4F8 0%, #F5F9FB 100%);
-            padding: 5rem 2rem;
-            text-align: center;
-        }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            color: #2C5F8D;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
+.section-title {
+    text-align: center;
+    padding: 10px;
+    font-weight: 800;
+    font-size: 40px;
+    color: #ffffff
+}
 
-        .hero p {
-            font-size: 1.3rem;
-            color: #5A7C9B;
-            margin-bottom: 2.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.location-section {
+    background-image:
+        linear-gradient(rgba(44, 95, 141, 0.8), rgba(44, 95, 141, 0.8)), /* Overlay de azul escuro com 80% de opacidade */
+        url('backgroundimg.jpg');
+    padding-bottom: 30px;
+    background-repeat: repeat; /* Repete o padrão */
+    background-color: #2C5F8D; /* Cor base se a imagem não carregar ou para mesclar */
+}
+/* Estilos para a nova grade de 4 colunas */
+.grid-layout-4-columns {
+    display: grid;
+    /* Define 4 colunas de tamanho igual. 
+     * 'repeat(4, 1fr)' significa 4 frações iguais de espaço disponível. */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2rem; /* Espaçamento entre as colunas e linhas */
+    max-width: 1200px; /* Mantém a largura máxima do contêiner */
+    text-align: left; /* Alinha o texto dentro das colunas à esquerda */
+}
+
+.grid-item {
+    padding: 1rem;
+    background-color: #263c49;; /* Fundo branco para os cards de informação */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra suave */
+    display: flex; /* Para centralizar conteúdo verticalmente em algumas colunas */
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+    align-items: flex-start; /* Alinha ao início */
+    
+}
+
+/* A imagem ocupará as duas primeiras colunas da primeira linha */
+.location-image-full {
+    grid-column: span 2; /* Faz este item ocupar 2 colunas */
+    padding: 0; /* Remove padding interno se a imagem preencher tudo */
+    background-color: transparent; /* Remove fundo branco */
+    box-shadow: none; /* Remove sombra */
+}
+
+.location-image-full img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px; /* Mantém o arredondamento da imagem */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Sombra apenas na imagem */
+    background: linear-gradient(135deg, #FFFFFF 0%, #f1f8d3 100%)
+}
+
+/* O mapa ocupará todas as 4 colunas, indo para a próxima linha */
+.map-full-width {
+    grid-column: 1 / -1; /* Faz este item ocupar de 1 até a última coluna (todas as 4) */
+    padding: 0; /* Remove padding interno */
+    background-color: transparent;
+    box-shadow: none; /* Remove sombra */
+}
+
+.map-full-width iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+    border-radius: 15px; /* Bordas arredondadas para o mapa */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Sombra no mapa */
+}
+
+/* Estilos para os títulos dentro das colunas */
+.location-info-column h3 {
+    font-size: 1.4rem; /* Tamanho ajustado para coluna */
+    color: #2C5F8D;
+    margin-bottom: 0.8rem;
+}
+
+.location-info-column p {
+    font-size: 1rem; /* Tamanho ajustado para coluna */
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Estilo para botões menores, se você usar a classe .btn-small */
+.btn-small {
+    padding: 0.7rem 1.5rem; /* Ajusta o padding para botões menores */
+    font-size: 0.95rem; /* Ajusta o tamanho da fonte */
+    margin-top: auto; /* Empurra o botão para baixo na coluna se houver espaço */
+}
+
+.grid-item.location-info-column{
+    background: linear-gradient(135deg, #FFFFFF 0%, #f1f8d3 100%)
+
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 1024px) {
+    .grid-layout-4-columns {
+        /* Em telas menores, 2 colunas */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .location-image-full,
+    .map-full-width {
+        grid-column: span 2; /* Ambos ocupam 2 colunas */
+    }
+    .grid-item {
+        text-align: center; /* Centraliza conteúdo em telas menores */
+        align-items: center; /* Centraliza itens */
+    }
+    .location-info-column .btn-small {
+        margin-left: auto;
+        margin-right: auto; /* Centraliza botões se a coluna centralizar texto */
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-layout-4-columns {
+        /* Em telas muito pequenas, empilha tudo em 1 coluna */
+        grid-template-columns: 1fr; 
+    }
+    .location-image-full,
+    .map-full-width {
+        grid-column: span 1; /* Ocupam 1 coluna */
+    }
+    /* Adapte outros tamanhos de fonte e padding se necessário */
+}
 
         .cta-buttons {
             display: flex;
@@ -118,7 +231,7 @@ nav ul li a:hover {
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 6px 20px #3673a8;
         }
 
         .btn-secondary {
@@ -266,17 +379,64 @@ nav ul li a:hover {
         }
 
         .banner-slide:nth-child(1) {
-            background: url('banner1.jpg');
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('banner1.jpg');
             background-size: cover;
             background-position: center;
+            z-index: 1;
+        }
+
+        .banner-slide:nth-child::before {
+            content: ''; 
+            position: absolute; /* Para cobrir todo o banner */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+    
+    /* 3. Define a cor do overlay (preto semi-transparente) */
+            background-color: rgba(0, 0, 0, 0.4); /* Preto com 40% de opacidade */
+    
+    /* 4. Posiciona o overlay atrás do texto */
+            z-index: -1;
         }
 
         .banner-slide:nth-child(2) {
-            background: url('banner2.jpg');
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('banner2.jpg');
             background-size: cover;
             background-position: center;
+            z-index: 1;
         }
 
+        .banner-slide:nth-child(2)::before {
+            content: ''; 
+            position: absolute; /* Para cobrir todo o banner */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .banner-slide:nth-child(3) {
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('banner3.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .banner-slide:nth-child(3)::before {
+            content: ''; 
+            position: absolute; /* Para cobrir todo o banner */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
         .banner-slide h2 {
             font-size: 3rem;
