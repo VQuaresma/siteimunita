@@ -1,562 +1,649 @@
+/* ======================================= */
+/* 1. VARIÁVEIS CSS (CUSTOM PROPERTIES) */
+/* Gerenciamento Global de Estilos: Edite aqui para mudar o tema visual do site */
+/* ======================================= */
+:root {
+    /* 🎨 Cores da Paleta */
+    --color-primary: #2C5F8D; /* Azul Principal (Escuro - Fundo dos Cards/Rodapé/Botões Primários) */
+    --color-secondary: #4A90E2; /* Azul de Destaque / Hover */
+    --color-tertiary: #f1f8d3; /* Fundo Suave / Claro dos Cards de Info/Header */
+    --color-text-dark: #333; /* Texto Geral Escuro */
+    --color-text-light: white; /* Texto em Fundo Escuro */
+    --color-text-nav: #466d83; /* Cor específica dos links de navegação */
+    --color-background-light: #FFFFFF; /* Fundo Branco */
+    
+    /* 📏 Tipografia */
+    --font-family-main: "DM Sans", sans-serif;
+    --font-size-base: 1.1rem;
+    
+    /* 📐 Espaçamento (Escala) */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+    
+    /* 🖼️ Sombras */
+    --shadow-sm: 0 2px 10px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* ======================================= */
+/* 2. ESTILOS GLOBAIS E RESET */
+/* ======================================= */
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: "DM Sans", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-            line-height: 1.6;
-            color: #333;
-        }
+body {
+    font-family: var(--font-family-main);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+}
 
-        header {
-            background: linear-gradient(135deg, #FFFFFF 0%, #f1f8d3 100%);
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+/* ======================================= */
+/* 3. HEADER E NAVEGAÇÃO */
+/* ======================================= */
+header {
+    background: var(--color-tertiary);
+    padding: 1.5rem 0;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-        .container {
-            
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display:flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .logo-container {
-            display: flex;
-            justify-content: left;
-            align-items: center;
-        }
+.logo-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
 
-        .logo {
-            max-width: 300px;
-            height: auto;
-        }
+.logo {
+    max-width: 300px;
+    height: auto;
+}
 
-        nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px; 
+}
 
-        /* Torna os itens (<li>) horizontais */
-        display: flex;
-        /* Adiciona um espaço entre os links (opcional, pode ser feito com gap ou margin) */
-        gap: 30px; /* Adiciona espaçamento entre os itens */ 
-        }
-
-        nav ul li a {
-    /* Retira o sublinhado dos links */
+nav ul li a {
     text-decoration: none;
-    /* Define a cor do texto (adapte à sua paleta) */
-    color: #466d83; /* Um branco suave, similar ao que aparece na sua imagem do código */
-    /* Define a fonte e tamanho (opcional) */
+    color: var(--color-text-nav);
     font-size: 20px;
     font-weight: 500;
-    /* Adiciona um pequeno preenchimento interno (padding) para a área de clique */
     padding: 5px 0;
-    /* Transição suave para o efeito hover */
     transition: color 0.3s ease;
 }
 
-/* Efeito ao passar o mouse */
 nav ul li a:hover {
-    color: #27aee3; /* Exemplo de cor de destaque (azul) */
+    color: var(--color-secondary); 
+}
+
+/* ======================================= */
+/* 4. BOTÕES (BTNS) */
+/* ======================================= */
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) 2.5rem; 
+    font-size: var(--font-size-base); 
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #386083 100%);
+    color: var(--color-text-light);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--color-secondary);
+}
+
+.btn-secondary {
+    background: var(--color-background-light);
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+}
+
+.btn-secondary:hover {
+    background: var(--color-secondary);
+    color: var(--color-text-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+}
+
+.btn-small {
+    padding: 0.7rem 1.5rem; 
+    font-size: 0.95rem; 
+    margin-top: auto;
+}
+
+/* ======================================= */
+/* 5. SEÇÃO DE SERVIÇOS */
+/* ======================================= */
+.services {
+    padding: var(--spacing-lg) var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-tertiary) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.services__mascot {
+    position: absolute;
+    bottom: 0; 
+    right: 0; 
+    width: 300px; 
+    height: auto; 
+    opacity: 0.9;
+    z-index: 1; 
+    pointer-events: none; 
+}
+
+.services h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--color-primary); 
+    margin-bottom: var(--spacing-lg);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    background: var(--color-primary); 
+    padding: var(--spacing-md);
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.service-card > p {
+    color: var(--color-text-light); 
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-secondary);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+}
+
+.service-image {
+    width: 100px; 
+    height: 100px; 
+    margin: 0 auto var(--spacing-sm) auto; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    overflow: hidden; 
+}
+
+.service-image img {
+    max-width: 100%; 
+    max-height: 100%; 
+    display: block; 
+    object-fit: cover; 
+    border-radius: 50%; 
+}
+
+.service-card h3 {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+}
+
+.service-card p {
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+/* Link como mini-botão */
+.service-card a {
+    display: inline-block; 
+    padding: 8px 15px;
+    margin-top: 15px;
+    background-color: var(--color-tertiary); 
+    color: var(--color-primary); 
+    border: none;
+    border-radius: 20px;
+    text-decoration: none; 
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+.service-card a:hover {
+    background-color: var(--color-background-light);
+    color: var(--color-secondary); 
 }
 
 
+/* ======================================= */
+/* 6. SEÇÃO DE LOCALIZAÇÃO */
+/* ======================================= */
 .section-title {
     text-align: center;
     padding: 10px;
     font-weight: 800;
     font-size: 40px;
-    color: #ffffff
+    color: var(--color-text-light) 
 }
 
 .location-section {
     background-image:
-        linear-gradient(rgba(44, 95, 141, 0.8), rgba(44, 95, 141, 0.8)), /* Overlay de azul escuro com 80% de opacidade */
-        url('backgroundimg.jpg');
-    padding-bottom: 30px;
-    background-repeat: repeat; /* Repete o padrão */
-    background-color: #2C5F8D; /* Cor base se a imagem não carregar ou para mesclar */
+        linear-gradient(rgba(44, 95, 141, 0.8), rgba(44, 95, 141, 0.8)),
+        url('background.jpg');
+    padding: var(--spacing-sm) 0 var(--spacing-lg) 0; /* Ajustado o padding */
+    background-repeat: repeat;
+    background-color: var(--color-primary); 
+    
+    /* Propriedades da Animação */
+    animation-name: slideBackground;
+    animation-duration: 40s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite; 
 }
-/* Estilos para a nova grade de 4 colunas */
-.grid-layout-4-columns {
+
+@keyframes slideBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0; 
+    }
+}
+
+.grid-layout-3-columns {
     display: grid;
-    /* Define 4 colunas de tamanho igual. 
-     * 'repeat(4, 1fr)' significa 4 frações iguais de espaço disponível. */
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 2rem; /* Espaçamento entre as colunas e linhas */
-    max-width: 1200px; /* Mantém a largura máxima do contêiner */
-    text-align: left; /* Alinha o texto dentro das colunas à esquerda */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+    padding-bottom: 25px;
 }
 
 .grid-item {
-    padding: 1rem;
-    background-color: #263c49;; /* Fundo branco para os cards de informação */
+    padding: var(--spacing-sm);
+    background-color: #263c49; 
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra suave */
-    display: flex; /* Para centralizar conteúdo verticalmente em algumas colunas */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Alinha o conteúdo ao topo */
-    align-items: flex-start; /* Alinha ao início */
-    
+    justify-content: flex-start;
+    align-items: flex-start; 
 }
 
-/* A imagem ocupará as duas primeiras colunas da primeira linha */
 .location-image-full {
-    grid-column: span 2; /* Faz este item ocupar 2 colunas */
-    padding: 0; /* Remove padding interno se a imagem preencher tudo */
-    background-color: transparent; /* Remove fundo branco */
-    box-shadow: none; /* Remove sombra */
+    grid-column: span 1;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .location-image-full img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 15px; /* Mantém o arredondamento da imagem */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Sombra apenas na imagem */
-    background: linear-gradient(135deg, #FFFFFF 0%, #f1f8d3 100%)
+    border-radius: 15px; 
+    box-shadow: var(--shadow-lg); 
+    background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-tertiary) 100%)
 }
 
-/* O mapa ocupará todas as 4 colunas, indo para a próxima linha */
-.map-full-width {
-    grid-column: 1 / -1; /* Faz este item ocupar de 1 até a última coluna (todas as 4) */
-    padding: 0; /* Remove padding interno */
-    background-color: transparent;
-    box-shadow: none; /* Remove sombra */
+.location-info-column {
+    background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-tertiary) 100%);
+    padding: 1.5rem;
+    border-radius: 15px;
+    height: 100%; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center; 
+    text-align: center;
 }
 
-.map-full-width iframe {
-    width: 100%;
-    height: 450px;
-    border: 0;
-    border-radius: 15px; /* Bordas arredondadas para o mapa */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Sombra no mapa */
-}
-
-/* Estilos para os títulos dentro das colunas */
-.location-info-column h3 {
-    font-size: 1.4rem; /* Tamanho ajustado para coluna */
-    color: #2C5F8D;
-    margin-bottom: 0.8rem;
-}
-
+/* O wrapper de conteúdo é inútil sem ter sido usado no HTML, então os estilos foram simplificados/direcionados */
 .location-info-column p {
-    font-size: 1rem; /* Tamanho ajustado para coluna */
+    margin: 5px 0; 
+    line-height: 1.4;
+    font-size: 0.95rem; 
+}
+
+.location-info-column h3 {
+    margin-bottom: var(--spacing-sm); 
+}
+
+/* ======================================= */
+/* 7. SEÇÃO SOBRE */
+/* ======================================= */
+.about {
+    padding: var(--spacing-xl) var(--spacing-md);
+    background: linear-gradient(135deg, #E8F4F8 0%, #F5F9FB 100%);
+    position: relative;
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.about p {
+    font-size: var(--font-size-base);
     color: #555;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
 
-/* Estilo para botões menores, se você usar a classe .btn-small */
-.btn-small {
-    padding: 0.7rem 1.5rem; /* Ajusta o padding para botões menores */
-    font-size: 0.95rem; /* Ajusta o tamanho da fonte */
-    margin-top: auto; /* Empurra o botão para baixo na coluna se houver espaço */
+.about-us__mascot {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 350px;
+    height: auto; 
+    opacity: 0.9; 
+    z-index: 1; 
+    pointer-events: none; 
 }
 
-.grid-item.location-info-column{
-    background: linear-gradient(135deg, #FFFFFF 0%, #f1f8d3 100%)
-
+/* ======================================= */
+/* 8. SEÇÃO DE CONTATO */
+/* ======================================= */
+.contact {
+    padding: var(--spacing-xl) var(--spacing-md);
+    background: var(--color-background-light);
+    text-align: center;
 }
 
-/* Media Queries para Responsividade */
+.contact h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+}
+
+/* ======================================= */
+/* 9. FOOTER */
+/* ======================================= */
+footer {
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* ======================================= */
+/* 10. BANNER SLIDER */
+/* ======================================= */
+.banner-slider {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.banner-slide {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.banner-content {
+    text-align: center;
+    padding: var(--spacing-md);
+    max-width: 800px;
+}
+
+/* Estilos de fundo de cada slide */
+.banner-slide:nth-child(1) {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('banner1.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.banner-slide:nth-child(2) {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('banner2.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.banner-slide:nth-child(3) {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('banner3.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+/* Estilos de texto (apenas h2 e p) */
+.banner-slide h2 {
+    font-size: 3rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.banner-slide p {
+    font-size: 1.4rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Controles do Slider */
+.banner-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+}
+
+.indicator.active {
+    background: white;
+    width: 35px;
+    border-radius: 6px;
+}
+
+.banner-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.banner-nav:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.banner-nav.prev {
+    left: 20px;
+}
+
+.banner-nav.next {
+    right: 20px;
+}
+
+/* ======================================= */
+/* 11. MEDIA QUERIES (RESPONSIVIDADE) */
+/* ======================================= */
+
+/* Telas de Tablet (<= 1024px) */
 @media (max-width: 1024px) {
-    .grid-layout-4-columns {
-        /* Em telas menores, 2 colunas */
+    .grid-layout-3-columns {
+        /* Muda para 2 colunas */
         grid-template-columns: repeat(2, 1fr); 
     }
-    .location-image-full,
-    .map-full-width {
-        grid-column: span 2; /* Ambos ocupam 2 colunas */
-    }
-    .grid-item {
-        text-align: center; /* Centraliza conteúdo em telas menores */
-        align-items: center; /* Centraliza itens */
-    }
-    .location-info-column .btn-small {
-        margin-left: auto;
-        margin-right: auto; /* Centraliza botões se a coluna centralizar texto */
+    .location-image-full {
+        /* A imagem ocupará apenas uma coluna das duas na linha. */
+        grid-column: span 1; 
     }
 }
 
+/* Telas de Celular (<= 768px) */
 @media (max-width: 768px) {
-    .grid-layout-4-columns {
-        /* Em telas muito pequenas, empilha tudo em 1 coluna */
+    .banner-slider {
+        height: 400px;
+    }
+    
+    /* Grid de Localização muda para 1 coluna e centraliza o texto */
+    .grid-layout-3-columns {
         grid-template-columns: 1fr; 
+        text-align: center;
     }
     .location-image-full,
-    .map-full-width {
-        grid-column: span 1; /* Ocupam 1 coluna */
+    .location-info-column {
+        grid-column: span 1;
+        align-items: center;
     }
-    /* Adapte outros tamanhos de fonte e padding se necessário */
+    
+    /* Header e Navegação */
+    .container {
+        flex-direction: column;
+    }
+    nav ul {
+        margin-top: var(--spacing-sm);
+        gap: 15px;
+    }
+    
+    /* Botões */
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    /* Ajustes de Títulos */
+    .services h2, .about h2, .contact h2 {
+        font-size: 2rem;
+    }
+    
+    /* Mascotas (ajustadas para ficarem menores e não sair da tela) */
+    .services__mascot {
+        width: 120px; 
+        bottom: 5px;
+        right: 5px; 
+    }
+    .about-us__mascot {
+        width: 120px;
+        bottom: 5px;
+        left: 5px; 
+    }
 }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #2C5F8D 0%, #386083 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px #3673a8;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #4A90E2;
-            border: 2px solid #4A90E2;
-        }
-
-        .btn-secondary:hover {
-            background: #4A90E2;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
-        }
-
-        .services {
-            padding: 5rem 2rem;
-            background: white;
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #2C5F8D;
-            margin-bottom: 3rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: #F8FCFF;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: #4A90E2;
-            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            color: #2C5F8D;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .service-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        .about {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #E8F4F8 0%, #F5F9FB 100%);
-        }
-
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
-            color: #2C5F8D;
-            margin-bottom: 2rem;
-        }
-
-        .about p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .contact {
-            padding: 5rem 2rem;
-            background: white;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            color: #2C5F8D;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2.5rem;
-        }
-
-        footer {
-            background: #2C5F8D;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .banner-slider {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            background: #f0f0f0;
-        }
-
-        .banner-slide {
-            position: absolute;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .banner-slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
-
-        .banner-content {
-            text-align: center;
-            padding: 2rem;
-            max-width: 800px;
-        }
-
-        .banner-slide:nth-child(1) {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('banner1.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-
-        .banner-slide:nth-child::before {
-            content: ''; 
-            position: absolute; /* Para cobrir todo o banner */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-    
-    /* 3. Define a cor do overlay (preto semi-transparente) */
-            background-color: rgba(0, 0, 0, 0.4); /* Preto com 40% de opacidade */
-    
-    /* 4. Posiciona o overlay atrás do texto */
-            z-index: -1;
-        }
-
-        .banner-slide:nth-child(2) {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('banner2.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-
-        .banner-slide:nth-child(2)::before {
-            content: ''; 
-            position: absolute; /* Para cobrir todo o banner */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .banner-slide:nth-child(3) {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('banner3.jpg');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-
-        .banner-slide:nth-child(3)::before {
-            content: ''; 
-            position: absolute; /* Para cobrir todo o banner */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .banner-slide h2 {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .banner-slide p {
-            font-size: 1.4rem;
-            color: white;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .banner-indicators {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 10;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid white;
-        }
-
-        .indicator.active {
-            background: white;
-            width: 35px;
-            border-radius: 6px;
-        }
-
-        .banner-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
-            border: none;
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .banner-nav:hover {
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .banner-nav.prev {
-            left: 20px;
-        }
-
-        .banner-nav.next {
-            right: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .banner-slider {
-                height: 400px;
-            }
-
-            .banner-slide h2 {
-                font-size: 2rem;
-            }
-
-            .banner-slide p {
-                font-size: 1.1rem;
-            }
-
-            .banner-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
-            }
-
-            .banner-nav.prev {
-                left: 10px;
-            }
-
-            .banner-nav.next {
-                right: 10px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
-            .services h2, .about h2, .contact h2 {
-                font-size: 2rem;
-            }
-        }
+/* Telas de Celular Pequeno (<= 480px) */
+@media (max-width: 480px) {
+    .banner-slide h2 {
+        font-size: 2rem;
+    }
+    .banner-slide p {
+        font-size: 1.1rem;
+    }
+    .banner-nav {
+        display: none; /* Oculta as setas em telas muito pequenas */
+    }
+}
