@@ -157,7 +157,7 @@ nav ul li a:hover {
 /* ======================================= */
 .services {
     padding: var(--spacing-lg) var(--spacing-md);
-    background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-tertiary) 100%);
+    background: var(--color-tertiary);
     position: relative;
     overflow: hidden;
 }
@@ -394,24 +394,68 @@ nav ul li a:hover {
 }
 
 /* ======================================= */
-/* 8. SEÇÃO DE CONTATO */
+/* 8. SEÇÃO DE CONTATO (Otimizada p/ Conversão) */
 /* ======================================= */
 .contact {
     padding: var(--spacing-xl) var(--spacing-md);
-    background: var(--color-background-light);
+    background: var(--color-tertiary);
     text-align: center;
+    overflow: hidden; /* Garante que a animação não cause problemas */
+}
+
+/* * [MELHORIA DE LAYOUT]
+ * Forçamos o container a ser uma coluna centralizada
+ * para criar um funil de conversão.
+*/
+.contact .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* Espaçamento entre os elementos */
 }
 
 .contact h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem; /* Título com mais destaque */
     color: var(--color-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem; /* Ajuste de margem */
+    font-weight: 700;
 }
 
 .contact p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 2.5rem;
+    font-size: 1.25rem; /* Texto mais legível e convidativo */
+    color: #555; /* Tom de cinza mais suave */
+    margin-bottom: 2.5rem; /* Mais espaço antes do botão */
+    max-width: 600px; /* Evita que o texto fique muito largo */
+    line-height: 1.7;
+}
+
+/* * [MELHORIA DE CONVERSÃO]
+ * Fazer o botão principal 'pulsar' para atrair o clique.
+ * Isso é altamente eficaz.
+*/
+.contact .btn-primary {
+    transform: scale(1.05); /* Deixa o botão ligeiramente maior */
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4); /* Sombra mais destacada */
+    animation: pulse-cta 2s infinite ease-in-out;
+}
+
+/* * Animação de pulso para o botão
+ * Adicione isso no final do seu arquivo CSS,
+ * talvez antes das Media Queries.
+*/
+@keyframes pulse-cta {
+    0% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+    }
+    50% {
+        transform: scale(1.1); /* Efeito de 'pulso' */
+        box-shadow: 0 12px 30px rgba(74, 144, 226, 0.5);
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+    }
 }
 
 /* ======================================= */
@@ -466,7 +510,7 @@ footer p {
 .banner-slide:nth-child(1) {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('banner1.jpg');
+        url('fotos-clinica/banner1.jpg');
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -475,7 +519,7 @@ footer p {
 .banner-slide:nth-child(2) {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('banner2.jpg');
+        url('fotos-clinica/banner2.jpg');
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -484,7 +528,7 @@ footer p {
 .banner-slide:nth-child(3) {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('banner3.jpg');
+        url('fotos-clinica/banner3.jpg');
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -564,6 +608,41 @@ footer p {
     right: 20px;
 }
 
+
+
+.whatsapp-bubble {
+    /* Posição Fixa */
+    position: fixed;
+    bottom: 25px; /* Distância do fundo */
+    right: 25px;  /* Distância da direita */
+    z-index: 1000; /* Garante que fique acima de tudo */
+
+    /* Aparência do Círculo */
+    background-color: #25D366; /* Cor oficial do WhatsApp */
+    color: white;             /* Cor do ícone */
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;      /* Deixa redondo */
+
+    /* Alinhamento do Ícone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Estilos do Ícone */
+    font-size: 40px; /* Tamanho do ícone */
+    text-decoration: none;
+
+    /* Efeitos */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.whatsapp-bubble:hover {
+    transform: scale(1.1); /* Efeito de zoom no hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
 /* ======================================= */
 /* 11. MEDIA QUERIES (RESPONSIVIDADE) */
 /* ======================================= */
@@ -582,6 +661,29 @@ footer p {
 
 /* Telas de Celular (<= 768px) */
 @media (max-width: 768px) {
+
+    .banner-indicators {
+        bottom: 20px; /* Reduz a distância do fundo */
+        padding: 0 1rem; /* Adiciona 1rem de padding nas laterais */
+        /* Isso garante que eles não fiquem colados na borda, mas o flexbox já deve ajudar com o espaçamento entre eles */
+    }
+
+    .banner-content {
+        max-width: 100%; 
+        padding: 0 var(--spacing-md); /* Garante que o conteúdo tenha 2rem de padding nas laterais */
+    }
+
+    /* Redução de Fontes para o Banner */
+    .banner-slide h2 { 
+        font-size: 1.8rem; /* Título principal menor */
+        line-height: 1.1;
+    }
+    .banner-slide p {
+        font-size: 1rem; /* Descrição menor */
+        line-height: 1.4;
+        padding: 0 1rem; /* Adiciona um padding extra para não encostar nas laterais */
+    }
+
     .banner-slider {
         height: 400px;
     }
@@ -617,6 +719,33 @@ footer p {
         justify-content: center;
     }
 
+    .service-card {
+        padding: 1.5rem 1rem; /* Aumenta um pouco o padding interno */
+        height: auto; /* Garante que a altura seja flexível, sem forçar quebras */
+    }
+
+    /* 2. Centralização Perfeita do Conteúdo */
+    .service-card h3 {
+        font-size: 1.4rem; /* Garante um bom tamanho de título */
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .service-card p {
+        font-size: 0.9rem; /* Reduz ligeiramente o tamanho da descrição */
+        padding: 0 0.5rem; /* Adiciona um pequeno padding interno à descrição */
+    }
+
+    /* 3. Ajuste do Tamanho da Imagem no Card */
+    .service-image {
+        width: 80px;  /* Reduz ligeiramente a imagem circular */
+        height: 80px;
+    }
+
+    /* 4. Força o Empilhamento para máxima clareza (apenas para garantir) */
+    .services-grid {
+        grid-template-columns: 1fr; 
+    }
+    
     /* Ajustes de Títulos */
     .services h2, .about h2, .contact h2 {
         font-size: 2rem;
@@ -637,13 +766,33 @@ footer p {
 
 /* Telas de Celular Pequeno (<= 480px) */
 @media (max-width: 480px) {
-    .banner-slide h2 {
-        font-size: 2rem;
-    }
-    .banner-slide p {
-        font-size: 1.1rem;
-    }
+    /* ... seu código existente ... */
+
+    /* A seta flutuante precisa de regras fortes */
     .banner-nav {
-        display: none; /* Oculta as setas em telas muito pequenas */
+        display: flex; /* Garante a exibição */
+        width: 35px;   /* Seta menor e mais discreta */
+        height: 35px;
+        font-size: 1.2rem; /* Ícone da seta menor */
+        background: rgba(255, 255, 255, 0.25); /* Fundo mais sutil */
+        top: 55%; /* Move ligeiramente para baixo para compensar o texto */
+    }
+    
+    .banner-nav.prev {
+        left: 10px; /* Posição da seta esquerda */
+    }
+    .banner-nav.next {
+        right: 10px; /* Posição da seta direita */
+    }
+
+    /* Ajuste FINAL do Texto para garantir que não quebre no menor celular */
+    .banner-slide h2 { 
+        font-size: 1.6rem !important;
+    }
+
+    /* Outras correções de texto para caber */
+    .banner-slide h2 { 
+        font-size: 1.8rem !important; /* Reduz ligeiramente mais o título */
+        line-height: 1.2;
     }
 }
