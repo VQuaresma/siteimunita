@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imunittá - Vacina e Saúde</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="logo/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -37,36 +42,39 @@
     </header>
 
     <section class="banner-slider">
-        <div class="banner-slide active">
+        <div class="banner-slide active" data-desktop-src="fotos-clinica/banner1.jpg"
+            data-mobile-src="fotos-clinica/bannermobile1.jpeg">
             <div class="banner-content">
-                <h2> Proteja sua Família</h2>
-                <p>Vacinas de qualidade para todas as idades</p>
+                <h2>Proteja sua Família</h2>
+                <p>Vacinas de qualidade para todas as idades, do recém-nascido ao idoso, com segurança e qualidade
+                    garantidas.</p>
                 <a href="#contact" class="btn btn-primary">Fale Conosco</a>
             </div>
         </div>
-        <div class="banner-slide">
+        <div class="banner-slide" data-desktop-src="fotos-clinica/banner2.jpg"
+            data-mobile-src="fotos-clinica/bannermobile2.jpeg">
             <div class="banner-content">
-                <h2> Cuidado Especializado</h2>
-                <p>Equipe médica qualificada e atendimento humanizado</p>
-                <a href="https://wa.me/5591998174787" class="btn btn-primary" target="_blank">Fale Conosco</a>
+                <h2>Cuidado Especializado</h2>
+                <p>Equipe médica qualificada e atendimento humanizado.</p>
+                <a href="#services" class="btn btn-primary">Fale Conosco</a>
             </div>
         </div>
-        <div class="banner-slide">
+        <div class="banner-slide" data-desktop-src="fotos-clinica/banner3.jpg"
+            data-mobile-src="fotos-clinica/bannermobile3.jpeg">
             <div class="banner-content">
-                <h2> Cuidado Especializado</h2>
-                <p>Equipe médica qualificada e atendimento humanizado</p>
-                <a href="https://wa.me/5591998174787" class="btn btn-primary" target="_blank">Fale Conosco</a>
+                <h2>Sua Saúde em Primeiro Lugar</h2>
+                <p>Infraestrutura moderna e confortável para toda a sua família.</p>
+                <a href="#about" class="btn btn-primary">Fale Conosco</a>
             </div>
         </div>
-        </div>
-        
-        <button class="banner-nav prev" onclick="changeSlide(-1)">‹</button>
-        <button class="banner-nav next" onclick="changeSlide(1)">›</button>
-        
+
+        <button class="banner-nav prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
+        <button class="banner-nav next" aria-label="Próximo"><i class="bi bi-chevron-right"></i></button>
+
         <div class="banner-indicators">
-            <span class="indicator active" onclick="goToSlide(0)"></span>
-            <span class="indicator" onclick="goToSlide(1)"></span>
-            <span class="indicator" onclick="goToSlide(2)"></span>
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
         </div>
     </section>
 
@@ -75,54 +83,64 @@
         <div class="container">
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-image"> <img src="fotos-serviços/vacina.jpg" alt="Ilustração de Vacinação"> </div>
+                    <div class="service-image"> <img src="fotos-serviços/vacina.jpg" alt="Ilustração de Vacinação">
+                    </div>
                     <h3>Vacinas</h3>
-                    <p>Vacinas para todas as idades, do recém-nascido ao idoso, com segurança e qualidade garantidas.</p>
+                    <p>Vacinas para todas as idades, do recém-nascido ao idoso, com segurança e qualidade garantidas.
+                    </p>
                     <a href="vacinas.html" class="cta-mini">
-                    <i class="fas fa-arrow-right"></i> Ver Tabela de Vacinas
+                        <i class="fas fa-arrow-right"></i> Ver Tabela de Vacinas
                     </a>
                 </div>
-                 <div class="service-card">
-                    <div class="service-image"> <img src="fotos-serviços/Ginecologia.jpg" alt="Ilustração de Vacinação"> </div>
+                <div class="service-card">
+                    <div class="service-image"> <img src="fotos-serviços/Ginecologia.jpg" alt="Ilustração de Vacinação">
+                    </div>
                     <h3>Ginecologia </h3>
                     <p>Um acompanhamento atencioso e preventivo, com segurança e qualidade garantidas.</p>
                     <a href="vacinas.html" class="cta-mini">
-                    <i class="fas fa-arrow-right"></i> Agende sua Consulta de Rotina
+                        <i class="fas fa-arrow-right"></i> Agende sua Consulta de Rotina
                     </a>
                 </div>
-                 <div class="service-card">
-                    <div class="service-image"> <img src="fotos-serviços/Obstetrícia.jpg" alt="Ilustração de Vacinação"> </div>
+                <div class="service-card">
+                    <div class="service-image"> <img src="fotos-serviços/Obstetrícia.jpg" alt="Ilustração de Vacinação">
+                    </div>
                     <h3>Obstetrícia</h3>
-                    <p>Obstetrícia para a mãe e o bebê, da concepção ao pós-parto, com segurança e qualidade garantidas.</p>
+                    <p>Obstetrícia para a mãe e o bebê, da concepção ao pós-parto, com segurança e qualidade garantidas.
+                    </p>
                     <a href="vacinas.html" class="cta-mini">
-                    <i class="fas fa-arrow-right"></i> Saiba Mais sobre o Pré-Natal
+                        <i class="fas fa-arrow-right"></i> Saiba Mais sobre o Pré-Natal
                     </a>
                 </div>
-                 <div class="service-card">
-                    <div class="service-image"> <img src="fotos-serviços/Ultrassonografia.jpg" alt="Ilustração de Vacinação"> </div>
+                <div class="service-card">
+                    <div class="service-image"> <img src="fotos-serviços/Ultrassonografia.jpg"
+                            alt="Ilustração de Vacinação"> </div>
                     <h3>Ultrassonografia</h3>
-                    <p>Ultrassonografia para todas as especialidades e todas as idades, com segurança e qualidade garantidas.</p>
+                    <p>Ultrassonografia para todas as especialidades e todas as idades, com segurança e qualidade
+                        garantidas.</p>
                     <a href="vacinas.html" class="cta-mini">
-                    <i class="fas fa-arrow-right"></i> Prepare-se para o seu Exame
+                        <i class="fas fa-arrow-right"></i> Prepare-se para o seu Exame
                     </a>
                 </div>
-                 <div class="service-card">
-                    <div class="service-image"> <img src="fotos-serviços/Psicologia.jpg" alt="Ilustração de Vacinação"> </div>
+                <div class="service-card">
+                    <div class="service-image"> <img src="fotos-serviços/Psicologia.jpg" alt="Ilustração de Vacinação">
+                    </div>
                     <h3>Psicologia</h3>
                     <p>Psicologia para todas as idades e desafios da vida, com segurança e qualidade garantidas.</p>
                     <a href="vacinas.html" class="cta-mini">
-                    <i class="fas fa-arrow-right"></i> Saiba Mais sobre as Terapias
+                        <i class="fas fa-arrow-right"></i> Saiba Mais sobre as Terapias
                     </a>
                 </div>
-                 <div class="service-card">
-                    <div class="service-image"> <img src="fotos-serviços/Nutrição.jpg" alt="Ilustração de Vacinação"> </div>
+                <div class="service-card">
+                    <div class="service-image"> <img src="fotos-serviços/Nutrição.jpg" alt="Ilustração de Vacinação">
+                    </div>
                     <h3>Nutrição</h3>
-                    <p>Nutrição para todas as idades e objetivos, do bem-estar à performance, com segurança e qualidade garantidas.</p>
+                    <p>Nutrição para todas as idades e objetivos, do bem-estar à performance, com segurança e qualidade
+                        garantidas.</p>
                     <a href="vacinas.html" class="cta-mini">
-                    <i class="fas fa-arrow-right"></i> Marque sua Avaliação
+                        <i class="fas fa-arrow-right"></i> Marque sua Avaliação
                     </a>
                 </div>
-                 
+
             </div>
         </div>
         <img src="icons/3.png" alt="Boneco da Imunittá" class="services__mascot">
@@ -130,42 +148,47 @@
 
     <section class="location-section">
         <h2 class="section-title">Onde Encontrar a Imunittá?</h2>
-    <div class="container">
-        
-        <div class="grid-layout-3-columns">
-            <div class="grid-item location-image-full">
-                <img src="fotos-clinica/WhatsApp Image 2025-11-06 at 19.11.01.jpeg" alt="Fachada da Clínica Imunittá">
-            </div>
+        <div class="container">
 
-            <div class="grid-item location-info-column">
-                <h3>Nosso Endereço:</h3>
-                <p>Avenida Agenor Gonçalves de Paiva 10, Esquina com Rua Itacaiúnas,</p>
-                <p>Bairro Alto Bonito II, QD 47, LT 10</p>
-                <p>Canaã dos Carajás - PA, 68352-005</p>
-                <a href="https://www.google.com/maps/place/Imunitt%C3%A1+Vacina+e+Sa%C3%BAde/@-6.5234705,-49.8453691,17.37z/data=!4m6!3m5!1s0x92dd9d386dd5dfb3:0xcc0d307d0620c9ee!8m2!3d-6.5234014!4d-49.8440962!16s%2Fg%2F11x_pp933d?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-secondary btn-small">
-                    <i class="fas fa-map-marker-alt"></i> Traçar Rota
-                </a>
-            </div>
+            <div class="grid-layout-3-columns">
+                <div class="grid-item location-image-full">
+                    <img src="fotos-clinica/bannermobile3.jpeg"
+                        alt="Fachada da Clínica Imunittá">
+                </div>
 
-            <div class="grid-item location-info-column">
-                <h3>Horário de Funcionamento:</h3>
-                <p>Segunda a Sexta: 08h00 - 18h00</p>
-                <p>Sábados: 09h00 - 13h00</p>
-                <a href="https://wa.me/5591998174787" class="btn btn-primary btn-small" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
-                </a>
+                <div class="grid-item location-info-column">
+                    <h3>Nosso Endereço:</h3>
+                    <p>Avenida Agenor Gonçalves de Paiva 10, Esquina com Rua Itacaiúnas,</p>
+                    <p>Bairro Alto Bonito II, QD 47, LT 10</p>
+                    <p>Canaã dos Carajás - PA, 68352-005</p>
+                    <a href="https://www.google.com/maps/place/Imunitt%C3%A1+Vacina+e+Sa%C3%BAde/@-6.5234705,-49.8453691,17.37z/data=!4m6!3m5!1s0x92dd9d386dd5dfb3:0xcc0d307d0620c9ee!8m2!3d-6.5234014!4d-49.8440962!16s%2Fg%2F11x_pp933d?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D"
+                        target="_blank" class="btn btn-secondary btn-small">
+                        <i class="fas fa-map-marker-alt"></i> Traçar Rota
+                    </a>
+                </div>
+
+                <div class="grid-item location-info-column">
+                    <h3>Horário de Funcionamento:</h3>
+                    <p>Segunda a Sexta: 08h00 - 18h00</p>
+                    <p>Sábados: 09h00 - 13h00</p>
+                    <a href="https://wa.me/5591998174787" class="btn btn-primary btn-small" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                    </a>
+                </div>
+
             </div>
-            
         </div>
-    </div>
     </section>
 
     <section class="about">
         <div class="container">
             <div class="about-content">
                 <h2>Sobre a Imunittá</h2>
-                <p>A Clínica Imunittá nasceu com o propósito de oferecer cuidados de saúde com excelência e humanização. Nossa equipe multidisciplinar está preparada para atender você e sua família com carinho e profissionalismo.</p>
-                <p>Acreditamos que a prevenção é o melhor remédio. Por isso, oferecemos um ambiente acolhedor e seguro, com tecnologia de ponta e as melhores práticas em saúde.</p>
+                <p>A Clínica Imunittá nasceu com o propósito de oferecer cuidados de saúde com excelência e humanização.
+                    Nossa equipe multidisciplinar está preparada para atender você e sua família com carinho e
+                    profissionalismo.</p>
+                <p>Acreditamos que a prevenção é o melhor remédio. Por isso, oferecemos um ambiente acolhedor e seguro,
+                    com tecnologia de ponta e as melhores práticas em saúde.</p>
                 <p>Venha nos conhecer e descubra como podemos cuidar melhor de você!</p>
             </div>
         </div>
@@ -177,7 +200,8 @@
             <h2>Fale conosco</h2>
             <p>Entre em contato com a Imunittá e garanta o melhor cuidado para sua saúde</p>
             <div class="cta-buttons">
-                <a href="https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta" class="btn btn-primary" target="_blank">
+                <a href="https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta"
+                    class="btn btn-primary" target="_blank">
                     <i class="bi bi-whatsapp"></i> Falar no WhatsApp
                 </a>
             </div>
@@ -191,22 +215,25 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/5591998174787" class="whatsapp-bubble" target="_blank" aria-label="Fale conosco pelo WhatsApp">
+    <a href="https://wa.me/5591998174787" class="whatsapp-bubble" target="_blank"
+        aria-label="Fale conosco pelo WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
 
     <script>
+        // --- VARIÁVEIS GLOBAIS ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.banner-slide');
         const indicators = document.querySelectorAll('.indicator');
         const totalSlides = slides.length;
 
+        // --- 1. LÓGICA DO SLIDER ---
         function showSlide(n) {
             slides.forEach(slide => slide.classList.remove('active'));
             indicators.forEach(indicator => indicator.classList.remove('active'));
-            
+
             currentSlide = (n + totalSlides) % totalSlides;
-            
+
             slides[currentSlide].classList.add('active');
             indicators[currentSlide].classList.add('active');
         }
@@ -219,12 +246,50 @@
             showSlide(n);
         }
 
+        // --- 2. LÓGICA DE IMAGEM RESPONSIVA ---
+        function updateBannerBackgrounds() {
+            const bannerSlides = document.querySelectorAll('.banner-slide');
+            const isMobile = window.innerWidth <= 768;
+
+            bannerSlides.forEach(slide => {
+                let imageUrl;
+                // Prioridade: Imagem Mobile se a tela for pequena
+                if (isMobile) {
+                    imageUrl = slide.getAttribute('data-mobile-src');
+                }
+
+                // Se não for mobile ou a imagem mobile não existir, usa a desktop
+                if (!imageUrl) {
+                    imageUrl = slide.getAttribute('data-desktop-src');
+                }
+
+                if (imageUrl) {
+                    slide.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${imageUrl}')`;
+                    slide.style.backgroundSize = 'cover';
+                    slide.style.backgroundPosition = 'center';
+                }
+            });
+
+            // **IMPORTANTE:** Garante que o slider comece com a imagem correta.
+            showSlide(currentSlide);
+        }
+
+        // --- 3. INICIALIZAÇÃO E EVENTOS ---
+
+        // Inicialização do Banner (DEVE ser a primeira coisa a rodar no DOMContentLoaded)
+        document.addEventListener('DOMContentLoaded', () => {
+            updateBannerBackgrounds();
+        });
+
+        // Ação ao redimensionar a janela
+        window.addEventListener('resize', updateBannerBackgrounds);
+
         // Auto-play do banner
         setInterval(() => {
             changeSlide(1);
         }, 5000);
 
-        // Smooth scroll para os links internos
+        // Smooth scroll para os links internos (Seu código original)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if (this.getAttribute('href') !== '#') {
@@ -240,5 +305,7 @@
             });
         });
     </script>
+
 </body>
+
 </html>

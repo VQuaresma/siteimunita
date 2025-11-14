@@ -38,6 +38,13 @@
     box-sizing: border-box;
 }
 
+html {
+    /* Garante que a altura da página não seja ultrapassada por margens externas */
+    overflow-y: auto; 
+    overflow-x: hidden;
+    height: 100%; /* Garante que o body possa herdar 100% */
+}
+
 body {
     font-family: var(--font-family-main);
     font-optical-sizing: auto;
@@ -45,7 +52,15 @@ body {
     font-style: normal;
     line-height: 1.6;
     color: var(--color-text-dark);
+    
+    /* SOLUÇÃO FINAL: Ocupa 100% da altura visível da tela */
+    min-height: 100vh; /* <-- Substitui o 100% e elimina o fundo branco */
+    
+    display: flex;
+    flex-direction: column; 
 }
+
+
 
 /* ======================================= */
 /* 3. HEADER E NAVEGAÇÃO */
@@ -273,7 +288,7 @@ nav ul li a:hover {
 .location-section {
     background-image:
         linear-gradient(rgba(44, 95, 141, 0.8), rgba(44, 95, 141, 0.8)),
-        url('background.jpg');
+        url('fotos-clinica/background.jpg');
     padding: var(--spacing-sm) 0 var(--spacing-lg) 0; /* Ajustado o padding */
     background-repeat: repeat;
     background-color: var(--color-primary); 
@@ -465,11 +480,14 @@ footer {
     background: var(--color-primary);
     color: var(--color-text-light);
     text-align: center;
-    padding: var(--spacing-md);
+    /* Reduz padding vertical e remove o horizontal, confiando no padding do container */
+    padding: 1rem 0; 
 }
 
+/* Remove a margem interna que estava atrapalhando o cálculo da altura */
 footer p {
-    margin: 5px 0;
+    margin: 0; 
+    font-size: 0.95rem; /* Ajuste sutil para manter o texto compacto */
 }
 
 /* ======================================= */
@@ -508,27 +526,18 @@ footer p {
 
 /* Estilos de fundo de cada slide */
 .banner-slide:nth-child(1) {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('fotos-clinica/banner1.jpg');
     background-size: cover;
     background-position: center;
     z-index: 1;
 }
 
 .banner-slide:nth-child(2) {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('fotos-clinica/banner2.jpg');
     background-size: cover;
     background-position: center;
     z-index: 1;
 }
 
 .banner-slide:nth-child(3) {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url('fotos-clinica/banner3.jpg');
     background-size: cover;
     background-position: center;
     z-index: 1;
@@ -662,6 +671,8 @@ footer p {
 /* Telas de Celular (<= 768px) */
 @media (max-width: 768px) {
 
+    
+
     .banner-indicators {
         bottom: 20px; /* Reduz a distância do fundo */
         padding: 0 1rem; /* Adiciona 1rem de padding nas laterais */
@@ -672,6 +683,14 @@ footer p {
         max-width: 100%; 
         padding: 0 var(--spacing-md); /* Garante que o conteúdo tenha 2rem de padding nas laterais */
     }
+
+    .banner-slider .btn-primary,
+    .banner-slider .btn {
+    padding: var(--spacing-sm) 1.5rem !important; /* Reduz o padding horizontal de 2.5rem para 1.5rem */
+    font-size: 1rem; /* Fonte ligeiramente menor */
+    max-width: 200px; /* Limita a largura total */
+    line-height: 1.2;
+}
 
     /* Redução de Fontes para o Banner */
     .banner-slide h2 { 
@@ -794,5 +813,125 @@ footer p {
     .banner-slide h2 { 
         font-size: 1.8rem !important; /* Reduz ligeiramente mais o título */
         line-height: 1.2;
+    }
+}
+
+
+/* ======================================= */
+/* 12. ESTILOS DA PÁGINA VACINAS */
+/* ======================================= */
+
+.vacinas-main {
+    flex-grow: 1; /* Ocupa todo o espaço restante e empurra o footer */
+    
+    padding: var(--spacing-xl) var(--spacing-md);
+
+    background-image:
+        linear-gradient(rgba(44, 95, 141, 0.8), rgba(44, 95, 141, 0.8)),
+        url('fotos-clinica/background.jpg');
+    background-repeat: repeat;
+    background-color: var(--color-primary); /* Mantém a cor base */
+    
+    /* Propriedades da Animação (copiadas do .location-section) */
+    animation-name: slideBackground;
+    animation-duration: 40s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+
+/* O container principal desta seção agora é um FLEX para criar as duas colunas */
+.vacinas-main .container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+    gap: var(--spacing-lg);
+}
+
+/* Coluna 1: Título e Subtítulo (Cor BRANCA) */
+.vacinas-title {
+    text-align: left;
+    font-size: 3.5rem;
+    color: var(--color-text-light); /* Cor do texto alterada para BRANCO */
+    width: 35%; 
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.vacinas-subtitle {
+    text-align: left;
+    font-size: 1.2rem;
+    color: var(--color-text-light); /* Cor do texto alterada para BRANCO */
+    width: 35%; 
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Coluna 2: Card da Lista (Fundo Branco) */
+.vacina-list {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+    max-width: 60%;
+    margin-top: 0; 
+}
+
+/* Estilização da Lista (Mantida) */
+.vacina-items {
+    list-style: none; padding: 0; margin: 0;
+}
+.vacina-items li {
+    padding: 10px 0; line-height: 1.4; border-bottom: 1px dashed #ddd; color: var(--color-text-dark);
+}
+.vacina-items li:last-child {
+    border-bottom: none;
+}
+.vacina-items strong {
+    color: var(--color-primary); font-weight: 700; display: block; margin-bottom: 2px;
+}
+
+
+
+/* ======================================= */
+/* RESPONSIVIDADE (@media (max-width: 768px)) */
+/* ======================================= */
+
+@media (max-width: 768px) {
+    
+    
+    /* Remove o layout de duas colunas para empilhar Título e Lista */
+    .vacinas-main .container {
+        flex-direction: column;
+        align-items: center; 
+        padding: 0 var(--spacing-md); /* Garante padding lateral em telas pequenas */
+
+        
+    }
+    
+    /* Título e Subtítulo */
+    .vacinas-title {
+        width: 100%; 
+        text-align: center;
+        font-size: 2.5rem;
+        margin-top: var(--spacing-lg);
+    }
+    
+    .vacinas-subtitle {
+        width: 90%; 
+        text-align: center;
+        margin-top: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+        font-size: 1.1rem;
+    }
+    
+    /* Card da Lista */
+    .vacina-list {
+        max-width: 100%; /* Ocupa largura total do container */
+        width: 100%;
+        margin-top: var(--spacing-md);
+        padding: var(--spacing-md);
+        box-sizing: border-box;
     }
 }
