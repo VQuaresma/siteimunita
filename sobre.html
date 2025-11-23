@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imunittá - Sobre</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logo/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <header id="header-placeholder"></header>
+
+    <main>
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>Sobre a Imunittá</h2>
+                    <p>A Clínica Imunittá nasceu com o propósito de oferecer cuidados de saúde com excelência e
+                        humanização.
+                        Nossa equipe multidisciplinar está preparada para atender você e sua família com carinho e
+                        profissionalismo.</p>
+                    <p>Acreditamos que a prevenção é o melhor remédio. Por isso, oferecemos um ambiente acolhedor e
+                        seguro,
+                        com tecnologia de ponta e as melhores práticas em saúde.</p>
+                    <p>Venha nos conhecer e descubra como podemos cuidar melhor de você!</p>
+                </div>
+            </div>
+            <img src="icons/4.png" alt="Mascote da Imunittá" class="about-us__mascot">
+        </section>
+
+        <section class="reviews-section" id="avaliacoes">
+            <div class="container">
+                <h2 class="section-title-light">O que dizem sobre a Imunittá?</h2>
+
+                <div class="review-carousel-wrapper">
+
+                    <div class="review-slides-container">
+
+                        <div class="review-slide-item">
+                            <div class="google-review-widget">
+                                <p class="placeholder-text">Avaliação Widget 1</p>
+                            </div>
+                        </div>
+
+                        <div class="review-slide-item">
+                            <div class="google-review-widget">
+                                <p class="placeholder-text">Avaliação Widget 2</p>
+                            </div>
+                        </div>
+
+                        <div class="review-slide-item">
+                            <div class="google-review-widget">
+                                <p class="placeholder-text">Avaliação Widget 3</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="review-nav prev" aria-label="Anterior">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <button class="review-nav next" aria-label="Próximo">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+
+                    <div class="review-indicators">
+                        <span class="review-indicator active" data-slide="0"></span>
+                        <span class="review-indicator" data-slide="1"></span>
+                        <span class="review-indicator" data-slide="2"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer id="footer-placeholder"></footer>
+    
+    <script src="script.js"></script> 
+    
+    <script>
+        // O código de importação do header e footer deve ser chamado aqui
+        // (Assumindo que você tem funções para importar o header/footer)
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Se o seu script.js importar o header/footer, você pode ignorar esta parte
+
+            // A chamada correta para o carrossel:
+            if (document.querySelector('.review-carousel-wrapper')) {
+                setupReviewsCarousel();
+            }
+        });
+    </script>
+</body>
+</html>
