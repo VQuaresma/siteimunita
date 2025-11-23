@@ -16,30 +16,47 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
+    <!-- Event snippet for Visualização de página conversion page -->
+    <script>
+        gtag('event', 'conversion', { 'send_to': 'AW-17626641447/h6BiCL7j1acbEKfohNVB' });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17626641447"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17626641447');
+    </script>
 </head>
 
 <body>
     <header>
-        <div class="container">
-            <div class="logo-container">
-                <!-- Substitua o src abaixo pelo caminho da sua logo -->
-                <img src="logo/logo-imunitta.png" alt="Imunittá - Vacina e Saúde" class="logo">
-            </div>
-            <nav class="nav-text">
-                <ul>
-                    <li>
-                        <a href="#">Sobre</a>
-                    </li>
-                    <li>
-                        <a href="#">Serviços</a>
-                    </li>
-                    <li>
-                        <a href="#">Contato</a>
-                    </li>
-                </ul>
-            </nav>
+    <div class="container">
+        <div class="logo-container">
+            <img src="logo/logo-imunitta.png" alt="Imunittá - Vacina e Saúde" class="logo">
         </div>
-    </header>
+
+        <div class="contact-info-header">
+            <a href="URL_DO_SEU_INSTAGRAM" target="_blank" aria-label="Instagram Imunittá">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="tel:SEU_NUMERO_DE_TELEFONE" class="phone-number">
+                <i class="fas fa-phone"></i> (94) 99288-0636
+            </a>
+        </div>
+        
+        <nav class="nav-text">
+            <ul>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <section class="banner-slider">
         <div class="banner-slide active" data-desktop-src="fotos-clinica/banner1.jpg"
@@ -152,13 +169,12 @@
 
             <div class="grid-layout-3-columns">
                 <div class="grid-item location-image-full">
-                    <img src="fotos-clinica/bannermobile3.jpeg"
-                        alt="Fachada da Clínica Imunittá">
+                    <img src="fotos-clinica/bannermobile3.jpeg" alt="Fachada da Clínica Imunittá">
                 </div>
 
                 <div class="grid-item location-info-column">
                     <h3>Nosso Endereço:</h3>
-                    <p>Avenida Agenor Gonçalves de Paiva 10, Esquina com Rua Itacaiúnas,</p>
+                    <p>Avenida Agenor Gonçalves de Paiva , Esquina com Rua Itacaiúnas,</p>
                     <p>Bairro Alto Bonito II, QD 47, LT 10</p>
                     <p>Canaã dos Carajás - PA, 68352-005</p>
                     <a href="https://www.google.com/maps/place/Imunitt%C3%A1+Vacina+e+Sa%C3%BAde/@-6.5234705,-49.8453691,17.37z/data=!4m6!3m5!1s0x92dd9d386dd5dfb3:0xcc0d307d0620c9ee!8m2!3d-6.5234014!4d-49.8440962!16s%2Fg%2F11x_pp933d?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D"
@@ -170,8 +186,8 @@
                 <div class="grid-item location-info-column">
                     <h3>Horário de Funcionamento:</h3>
                     <p>Segunda a Sexta: 08h00 - 18h00</p>
-                    <p>Sábados: 09h00 - 13h00</p>
-                    <a href="https://wa.me/5591998174787" class="btn btn-primary btn-small" target="_blank">
+                    <p>Sábados: 08h00 - 12h00</p>
+                    <a href="https://wa.me/5594992880636" class="btn btn-primary btn-small" target="_blank">
                         <i class="fab fa-whatsapp"></i> Falar no WhatsApp
                     </a>
                 </div>
@@ -200,8 +216,7 @@
             <h2>Fale conosco</h2>
             <p>Entre em contato com a Imunittá e garanta o melhor cuidado para sua saúde</p>
             <div class="cta-buttons">
-                <a href="https://wa.me/5521999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta"
-                    class="btn btn-primary" target="_blank">
+                <a href="https://wa.me/5594992880636" class="btn btn-primary" target="_blank">
                     <i class="bi bi-whatsapp"></i> Falar no WhatsApp
                 </a>
             </div>
@@ -215,7 +230,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/5591998174787" class="whatsapp-bubble" target="_blank"
+    <a href="https://wa.me/5594992880636" class="whatsapp-bubble" target="_blank"
         aria-label="Fale conosco pelo WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
@@ -226,6 +241,8 @@
         const slides = document.querySelectorAll('.banner-slide');
         const indicators = document.querySelectorAll('.indicator');
         const totalSlides = slides.length;
+        const prevButton = document.querySelector('.banner-nav.prev');
+        const nextButton = document.querySelector('.banner-nav.next');
 
         // --- 1. LÓGICA DO SLIDER ---
         function showSlide(n) {
@@ -288,6 +305,18 @@
         setInterval(() => {
             changeSlide(1);
         }, 5000);
+
+        if (prevButton && nextButton) {
+            prevButton.addEventListener('click', () => changeSlide(-1));
+            nextButton.addEventListener('click', () => changeSlide(1));
+        }
+
+        indicators.forEach(indicator => {
+            indicator.addEventListener('click', function () {
+                const slideIndex = parseInt(this.getAttribute('data-slide'));
+                goToSlide(slideIndex);
+            });
+        });
 
         // Smooth scroll para os links internos (Seu código original)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
