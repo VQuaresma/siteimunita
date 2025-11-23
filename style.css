@@ -1015,3 +1015,118 @@ footer p {
         box-sizing: border-box;
     }
 }
+
+
+
+
+/* ======================================= */
+/* NOVO: SEÇÃO DE AVALIAÇÕES E CARROSSEL */
+/* ======================================= */
+
+.reviews-section {
+    /* Fundo Azul Escuro (Cor primária da sua paleta) */
+    background: var(--color-primary); 
+    padding: var(--spacing-lg) 0;
+    position: relative; /* Necessário para posicionamento absoluto dos botões */
+    overflow: hidden; /* Oculta partes do carrossel que estão fora de vista */
+}
+
+.section-title-light {
+    text-align: center;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--color-text-light); /* Texto Branco */
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ------------------------------------- */
+/* CARROSSEL LAYOUT (3 COLUNAS VISÍVEIS) */
+/* ------------------------------------- */
+
+.review-carousel-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden; /* Essencial: Garante que apenas 3 slides sejam vistos */
+    position: relative;
+    padding: 0 var(--spacing-md);
+}
+
+.review-slides-container {
+    display: flex; /* Alinha os slides lado a lado */
+    /* A largura inicial é 100% (o tamanho visível), mas será ajustada pelo JS */
+    transition: transform 0.5s ease-in-out; /* Transição suave */
+    /* Ajustado no JS para ser 100% * (Total de Slides / Slides Visíveis) */
+}
+
+.review-slide-item {
+    /* Cada item deve ocupar 1/3 da largura visível (para mostrar 3 de cada vez) */
+    flex-shrink: 0;
+    width: calc(100% / 3); 
+    padding: 0 15px; /* Espaçamento entre os cards de avaliação */
+    box-sizing: border-box; 
+}
+
+/* ------------------------------------- */
+/* ESTILO DO WIDGET/CARD */
+/* ------------------------------------- */
+.google-review-widget {
+    background: var(--color-tertiary); /* Fundo suave para o card */
+    color: var(--color-text-dark);
+    padding: var(--spacing-md);
+    border-radius: 15px;
+    height: 100%; /* Garante altura uniforme */
+    box-shadow: var(--shadow-md);
+}
+
+.placeholder-text {
+    text-align: center;
+    font-weight: 600;
+}
+
+/* ------------------------------------- */
+/* CONTROLES (SETAS) */
+/* ------------------------------------- */
+
+.review-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--color-text-light);
+    border: none;
+    font-size: 2rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 20; 
+}
+
+.review-nav:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.review-nav.prev {
+    left: 0;
+}
+
+.review-nav.next {
+    right: 0;
+}
+
+/* ------------------------------------- */
+/* MEDIA QUERY: Celular (1 coluna) */
+/* ------------------------------------- */
+
+@media (max-width: 768px) {
+    /* No celular, mostramos apenas 1 slide por vez */
+    .review-slide-item {
+        width: 100%; 
+    }
+
+    /* O slider contêiner precisa ter uma largura igual ao número total de slides */
+    /* A largura total será ajustada pelo JavaScript, mas garantimos o espaçamento lateral */
+    .review-carousel-wrapper {
+        padding: 0 10px;
+    }
+}

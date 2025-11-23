@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imunittá - Vacina e Saúde</title>
+
+    
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,32 +32,11 @@
 
         gtag('config', 'AW-17626641447');
     </script>
+
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <img src="logo/logo-imunitta.png" alt="Imunittá - Vacina e Saúde" class="logo">
-            </div>
-
-            <div class="contact-info-header">
-                <a href="https://www.instagram.com/imunittacanaa" target="_blank" aria-label="Instagram Imunittá">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="tel:SEU_NUMERO_DE_TELEFONE" class="phone-number">
-                    <i class="fas fa-phone"></i> (94) 99288-0636
-                </a>
-            </div>
-
-            <nav class="nav-text">
-                <ul>
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Serviços</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header id="header-placeholder">
     </header>
 
     <section class="banner-slider">
@@ -223,116 +204,15 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Imunittá - Vacina e Saúde. Todos os direitos reservados.</p>
-            <p>Cuidando da sua saúde com amor e dedicação ❤️</p>
-        </div>
-    </footer>
+    <footer id="footer-placeholder"></footer>
 
     <a href="https://wa.me/5594992880636" class="whatsapp-bubble" target="_blank"
         aria-label="Fale conosco pelo WhatsApp">
         <i class="bi bi-whatsapp"></i>
     </a>
 
-    <script>
-        // --- VARIÁVEIS GLOBAIS ---
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.banner-slide');
-        const indicators = document.querySelectorAll('.indicator');
-        const totalSlides = slides.length;
-        const prevButton = document.querySelector('.banner-nav.prev');
-        const nextButton = document.querySelector('.banner-nav.next');
-
-        // --- 1. LÓGICA DO SLIDER ---
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-
-            currentSlide = (n + totalSlides) % totalSlides;
-
-            slides[currentSlide].classList.add('active');
-            indicators[currentSlide].classList.add('active');
-        }
-
-        function changeSlide(direction) {
-            showSlide(currentSlide + direction);
-        }
-
-        function goToSlide(n) {
-            showSlide(n);
-        }
-
-        // --- 2. LÓGICA DE IMAGEM RESPONSIVA ---
-        function updateBannerBackgrounds() {
-            const bannerSlides = document.querySelectorAll('.banner-slide');
-            const isMobile = window.innerWidth <= 768;
-
-            bannerSlides.forEach(slide => {
-                let imageUrl;
-                // Prioridade: Imagem Mobile se a tela for pequena
-                if (isMobile) {
-                    imageUrl = slide.getAttribute('data-mobile-src');
-                }
-
-                // Se não for mobile ou a imagem mobile não existir, usa a desktop
-                if (!imageUrl) {
-                    imageUrl = slide.getAttribute('data-desktop-src');
-                }
-
-                if (imageUrl) {
-                    slide.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${imageUrl}')`;
-                    slide.style.backgroundSize = 'cover';
-                    slide.style.backgroundPosition = 'center';
-                }
-            });
-
-            // **IMPORTANTE:** Garante que o slider comece com a imagem correta.
-            showSlide(currentSlide);
-        }
-
-        // --- 3. INICIALIZAÇÃO E EVENTOS ---
-
-        // Inicialização do Banner (DEVE ser a primeira coisa a rodar no DOMContentLoaded)
-        document.addEventListener('DOMContentLoaded', () => {
-            updateBannerBackgrounds();
-        });
-
-        // Ação ao redimensionar a janela
-        window.addEventListener('resize', updateBannerBackgrounds);
-
-        // Auto-play do banner
-        setInterval(() => {
-            changeSlide(1);
-        }, 5000);
-
-        if (prevButton && nextButton) {
-            prevButton.addEventListener('click', () => changeSlide(-1));
-            nextButton.addEventListener('click', () => changeSlide(1));
-        }
-
-        indicators.forEach(indicator => {
-            indicator.addEventListener('click', function () {
-                const slideIndex = parseInt(this.getAttribute('data-slide'));
-                goToSlide(slideIndex);
-            });
-        });
-
-        // Smooth scroll para os links internos (Seu código original)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
+    <script src="script.js">
+       
     </script>
 
 </body>
