@@ -1,34 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // URL do arquivo de cabeçalho que criamos
+    // Lógica do Header:
     const headerUrl = 'componenteshtml/header.html';
-
-    // O elemento no qual o conteúdo será inserido
     const placeholder = document.getElementById('header-placeholder');
-
+    // ... fetch para o header ...
     fetch(headerUrl)
         .then(response => {
             if (!response.ok) {
-                // Lança um erro se o arquivo não for encontrado
                 throw new Error('Header file not found');
             }
             return response.text();
         })
         .then(data => {
-            // Insere o conteúdo HTML do arquivo na tag <header>
             placeholder.innerHTML = data;
         })
         .catch(error => {
             console.error('Erro ao carregar o cabeçalho:', error);
         });
+    // Lógica do Footer:
+    const footerUrl = 'componenteshtml/footer.html';
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    fetch(footerUrl)
+        .then(response => response.ok ? response.text() : Promise.reject('Footer file not found'))
+        .then(data => { footerPlaceholder.innerHTML = data; })
+        .catch(error => { console.error('Erro ao carregar o rodapé:', error); });
+
+    // ... e o resto do seu DOMContentLoaded, incluindo updateBannerBackgrounds();
 });
 
-const footerUrl = 'componenteshtml/footer.html';
-const footerPlaceholder = document.getElementById('footer-placeholder');
-
-fetch(footerUrl)
-    .then(response => response.ok ? response.text() : Promise.reject('Footer file not found'))
-    .then(data => { footerPlaceholder.innerHTML = data; })
-    .catch(error => { console.error('Erro ao carregar o rodapé:', error); });
 
 // --- VARIÁVEIS GLOBAIS ---
 let currentSlide = 0;
@@ -171,4 +169,21 @@ function setupReviewsCarousel() {
 
     // Inicialização
     updateCarousel();
+}
+
+
+
+function gtag_report_conversion(url) {
+    // 1. DISPARA O PIXEL IMEDIATAMENTE
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17626641447/igmiCIqO7ccbEKfohNVB',
+        'value': 3.0,
+        'currency': 'BRL'
+    });
+    
+    // 2. ABRE O LINK EM UMA NOVA ABA/JANELA
+    window.open(url, '_blank'); 
+    
+    // 3. Opcional: Para evitar que a aba atual tente carregar o link também.
+    return false;
 }
