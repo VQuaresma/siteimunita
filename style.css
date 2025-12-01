@@ -1212,3 +1212,93 @@ footer p {
         right: 0px;
     }
 }
+
+/* ======================================= */
+/* 13. SEÇÃO FALE CONOSCO/MAPA */
+/* ======================================= */
+
+.fale-conosco-section {
+    /* Usa o padding vertical grande, comum em suas seções */
+    padding: var(--spacing-lg) 0; 
+    /* Usa a cor de fundo suave (clara) do seu tema */
+    background-image:
+        linear-gradient(rgba(44, 95, 141, 0.8), rgba(44, 95, 141, 0.8)),
+        url('fotos-clinica/background.jpg');
+}
+
+.section-title {
+    /* Estiliza o título para seguir a estética dos seus outros títulos de seção */
+    text-align: center;
+    font-weight: 800; /* Peso da fonte alto */
+    font-size: 2.5rem; /* Tamanho do título (o mesmo de 'Nossos Serviços') */
+    color: var(--color-background-light); 
+    margin-bottom: var(--spacing-lg); /* Espaçamento antes do mapa */
+    line-height: 1.2;
+}
+
+/* ------------------------------------- */
+/* RESPONSIVIDADE (Ajuste do Título no Celular) */
+/* ------------------------------------- */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem; /* Reduz o tamanho do título no mobile */
+    }
+}
+
+
+/* ======================================= */
+/* ESTILOS DA SEÇÃO DE MAPA (CONTATO) */
+/* ======================================= */
+
+.container-mapa {
+    /* Centraliza o bloco e limita a largura, usando a variável de espaçamento */
+    max-width: 900px; 
+    margin: var(--spacing-lg) auto; /* Ajusta a margem superior e inferior para 3rem */
+    padding: 0 var(--spacing-md); /* Garante que haja um respiro lateral em telas pequenas */
+    text-align: center;
+}
+
+/* ------------------------------------- */
+/* ESTILO DO IFRAME (O MAPA) */
+/* ------------------------------------- */
+.container-mapa iframe {
+    /* Responsividade e Tamanho */
+    width: 100%; 
+    height: 450px; /* Aumentei um pouco a altura para 450px para um visual mais imponente */
+    display: block; /* Garante que o iframe se comporte bem */
+    
+    /* Aplica o estilo de Borda e Sombra do seu tema */
+    border: none; /* Remove a borda padrão do seu código antigo */
+    border-radius: 15px; /* Aplica o arredondamento de 15px, consistente com seus cards */
+    box-shadow: var(--shadow-md); /* Sombra média do seu tema */
+    
+    /* Adiciona uma borda sutil com a cor de destaque (Opcional, mas bonito) */
+    outline: 2px solid var(--color-secondary); 
+    outline-offset: -2px; /* Faz a borda sutil ficar dentro do arredondamento */
+}
+
+
+/* ------------------------------------- */
+/* ESTILO DO TEXTO DE ENDEREÇO */
+/* ------------------------------------- */
+.endereco-texto {
+    margin-top: var(--spacing-md); /* Espaçamento de 2rem após o mapa */
+    margin-bottom: var(--spacing-lg); /* Espaçamento de 3rem para o próximo bloco */
+    font-size: var(--font-size-base); /* Tamanho padrão da fonte (1.1rem) */
+    font-weight: 500;
+    color: var(--color-background-light); /* Cor do texto escuro padrão */
+    line-height: 1.6;
+}
+
+/* ------------------------------------- */
+/* RESPONSIVIDADE (Ajusta a altura do mapa no celular) */
+/* ------------------------------------- */
+@media (max-width: 768px) {
+    .container-mapa iframe {
+        height: 300px; /* Reduz a altura do mapa em telas menores */
+    }
+    
+    .container-mapa {
+        margin: var(--spacing-md) auto; /* Reduz a margem vertical no mobile */
+    }
+}
