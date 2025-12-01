@@ -187,3 +187,106 @@ function gtag_report_conversion(url) {
     // 3. Opcional: Para evitar que a aba atual tente carregar o link também.
     return false;
 }
+
+function setupReviewsCarousel() {
+    const wrapper = document.querySelector('.review-carousel-wrapper');
+    if (!wrapper) return; 
+
+    const slidesContainer = wrapper.querySelector('.review-slides-container');
+    const slides = wrapper.querySelectorAll('.review-slide-item');
+    const prevBtn = wrapper.querySelector('.review-nav.prev');
+    const nextBtn = wrapper.querySelector('.review-nav.next');
+    const indicators = wrapper.querySelectorAll('.review-indicator');
+
+    if (slides.length === 0) return;
+
+    let currentSlide = 0;
+    const totalSlides = slides.length; // 10 slides no seu HTML
+
+    // DETECÇÃO DE TELA (usando a mesma breakpoint do CSS: 768px)
+    const isMobile = window.innerWidth <= 768;
+
+    // DEFINIÇÃO DAS VARIÁVEIS RESPONSIVAS
+    let visibleSlides;
+    let step;
+    let maxIndex;
+
+    if (isMobile) {
+        // MOBILE (1 item por vez): step=1, maxIndex=9
+        visibleSlides = 1;
+        step = 1;
+        maxIndex = 9; 
+        
+    } else {
+        // PC (DESKTOP) (2 itens por vez): step=2, maxIndex=8
+        visibleSlides = 3;
+        step = 3;
+        maxIndex = 9; 
+    }
+
+    // Função principal para mostrar o slide, com LOOP INFINITO
+    function showSlide(index) {
+        
+        // --- LÓGICA DE LOOP INFINITO ---
+        // Se avançar além do maxIndex, volta para 0
+        if (index > maxIndex) {
+            index = 0; 
+        } 
+        // Se retroceder além de 0, volta para o último índice visível (maxIndex)
+        else if (index < 0) {
+            index = maxIndex; 
+        }
+        
+        currentSlide = index;
+
+        // Calcula o deslocamento horizontal. 
+        // No PC (visibleSlides=2), isso é -currentSlide * 50%.
+        // No Mobile (visibleSlides=1), isso é -currentSlide * 100%.
+        const offset = -currentSlide * (100 / visibleSlides);
+        slidesContainer.style.transform = `translateX(${offset}%)`;
+
+        // O índice do indicador ativo é a posição atual dividida pelo passo
+        const activeIndicatorIndex = Math.floor(currentSlide / step); 
+        
+        // Atualiza a classe 'active' nos indicadores
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === activeIndicatorIndex);
+        });
+        
+        // Botões permanecem habilitados
+        if (prevBtn) {
+            prevBtn.disabled = false;
+        }
+        if (nextBtn) {
+            nextBtn.disabled = false;
+        }
+    }
+
+    // Funções de navegação que usam o STEP correto para PC ou Mobile
+    function nextSlide() {
+        showSlide(currentSlide + step);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - step);
+    }
+
+    // Adiciona Event Listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    }
+
+    // Event listener para indicadores
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            // Leva para o início da página correspondente ao indicador (index * step)
+            showSlide(index * step); 
+        });
+    });
+    
+    // Mostra o slide inicial
+    showSlide(currentSlide);
+}

@@ -1016,46 +1016,37 @@ footer p {
     }
 }
 
-
-
-
-/* ======================================= */
-/* NOVO: SEÇÃO DE AVALIAÇÕES E CARROSSEL */
-/* ======================================= */
-
 .reviews-section {
-    /* Fundo Azul Escuro (Cor primária da sua paleta) */
     background: var(--color-primary); 
     padding: var(--spacing-lg) 0;
-    position: relative; /* Necessário para posicionamento absoluto dos botões */
-    overflow: hidden; /* Oculta partes do carrossel que estão fora de vista */
+    position: relative; 
+    overflow: hidden; 
 }
 
 .section-title-light {
     text-align: center;
     font-weight: 800;
     font-size: 2.5rem;
-    color: var(--color-text-light); /* Texto Branco */
+    color: var(--color-text-light);
     margin-bottom: var(--spacing-lg);
 }
 
 /* ------------------------------------- */
-/* CARROSSEL LAYOUT (3 COLUNAS VISÍVEIS) */
+/* CARROSSEL LAYOUT (3 COLUNAS VISÍVEIS - DESKTOP) */
 /* ------------------------------------- */
 
 .review-carousel-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    overflow: hidden; /* Essencial: Garante que apenas 3 slides sejam vistos */
+    overflow: hidden; 
     position: relative;
-    padding: 0 var(--spacing-md);
+    /* Adiciona padding lateral para afastar o conteúdo das setas */
+    padding: 0 45px; 
 }
 
 .review-slides-container {
-    display: flex; /* Alinha os slides lado a lado */
-    /* A largura inicial é 100% (o tamanho visível), mas será ajustada pelo JS */
-    transition: transform 0.5s ease-in-out; /* Transição suave */
-    /* Ajustado no JS para ser 100% * (Total de Slides / Slides Visíveis) */
+    display: flex; 
+    transition: transform 0.5s ease-in-out;
 }
 
 .review-slide-item {
@@ -1067,20 +1058,63 @@ footer p {
 }
 
 /* ------------------------------------- */
-/* ESTILO DO WIDGET/CARD */
+/* ESTILO DO WIDGET/CARD E CABEÇALHO */
 /* ------------------------------------- */
+
 .google-review-widget {
-    background: var(--color-tertiary); /* Fundo suave para o card */
+    background: var(--color-tertiary); 
     color: var(--color-text-dark);
     padding: var(--spacing-md);
     border-radius: 15px;
-    height: 100%; /* Garante altura uniforme */
+    height: 100%; 
     box-shadow: var(--shadow-md);
 }
 
-.placeholder-text {
-    text-align: center;
-    font-weight: 600;
+.reviewer-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f06a6b; 
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.reviewer-name {
+    font-weight: bold;
+    margin: 0;
+    color: var(--color-text-dark);
+    line-height: 1.2;
+    margin-bottom: 2px;
+}
+
+.review-rating i {
+    color: #f5c400; /* Cor amarela para as estrelas */
+    margin-right: 2px;
+}
+
+.review-date {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.review-text {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #555;
+    margin-top: 15px;
+    flex-grow: 1; 
 }
 
 /* ------------------------------------- */
@@ -1099,6 +1133,8 @@ footer p {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
+    width: 35px; 
+    height: 60px;
     z-index: 20; 
 }
 
@@ -1107,11 +1143,11 @@ footer p {
 }
 
 .review-nav.prev {
-    left: 0;
+    left: 5px; 
 }
 
 .review-nav.next {
-    right: 0;
+    right: 5px;
 }
 
 /* ------------------------------------- */
@@ -1119,14 +1155,60 @@ footer p {
 /* ------------------------------------- */
 
 @media (max-width: 768px) {
-    /* No celular, mostramos apenas 1 slide por vez */
+    
+    /* 1. Otimiza o Título da Seção */
+    .section-title-light {
+        font-size: 1.6em; 
+        padding: 20px 10px; 
+        line-height: 1.3;
+    }
+    
+    /* 2. Layout Móvel: 1 Slide por vez */
+    .review-carousel-wrapper {
+        width: 100%;
+        padding: 0; /* Remove padding do wrapper para dar mais espaço ao slide */
+    }
+    
     .review-slide-item {
-        width: 100%; 
+        width: 100%;
+        padding: 0 15px; /* Adiciona padding lateral para respiro do card */
     }
 
-    /* O slider contêiner precisa ter uma largura igual ao número total de slides */
-    /* A largura total será ajustada pelo JavaScript, mas garantimos o espaçamento lateral */
-    .review-carousel-wrapper {
-        padding: 0 10px;
+    /* 3. CORREÇÃO DO CABEÇALHO "ACHATADO" (MOBILE) */
+
+    .reviewer-meta {
+        align-items: flex-start; /* Permite que o nome quebre a linha sem apertar */
+        margin-bottom: 5px; 
+    }
+
+    .reviewer-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 16px; 
+    }
+
+    .reviewer-name {
+        line-height: 1.2; 
+        margin-bottom: 3px; 
+    }
+    
+    .review-rating {
+        font-size: 0.85em; 
+        line-height: 1.2;
+    }
+    
+    /* 4. POSICIONAMENTO DA SETA NO MOBILE */
+    .review-nav {
+        width: 45px;
+        height: 45px;
+        background-color: rgba(0, 0, 0, 0.4);
+        top: 55%; 
+    }
+    
+    .review-nav.prev {
+        left: 0px; 
+    }
+    .review-nav.next {
+        right: 0px;
     }
 }
