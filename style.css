@@ -2,6 +2,17 @@
 /* 1. VARIÁVEIS CSS (CUSTOM PROPERTIES) */
 /* Gerenciamento Global de Estilos: Edite aqui para mudar o tema visual do site */
 /* ======================================= */
+
+/* Força a suavidade nativa em todo o documento */
+html {
+    scroll-behavior: smooth !important;
+}
+
+/* Evita que o título da seção fique colado no topo (atrás do header) */
+#sobre, #services, #localizacao, #contact, #render-reviews {
+    scroll-margin-top: 100px; /* Ajuste conforme a altura do seu header */
+}
+
 :root {
     /* 🎨 Cores da Paleta */
     --color-primary: #2C5F8D; /* Azul Principal (Escuro - Fundo dos Cards/Rodapé/Botões Primários) */
@@ -255,6 +266,43 @@ nav ul li a:hover {
     background: var(--color-tertiary);
     position: relative;
     overflow: hidden;
+}
+
+.detalhe-azul-oculto {
+    display: none;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 60px 20px;
+    border-top: 5px solid var(--color-secondary);
+    transition: all 0.5s ease;
+}
+
+.detalhe-azul-oculto.ativo {
+    display: block;
+    animation: slideDown 0.4s ease-out;
+}
+
+.fechar-btn {
+    float: right;
+    background: none;
+    border: 2px solid white;
+    color: white;
+    font-size: 25px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#conteudo-dinamico-servico h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .services__mascot {
@@ -1062,7 +1110,7 @@ footer p {
 /* ------------------------------------- */
 
 .google-review-widget {
-    background: var(--color-tertiary); 
+    background: var(--color-secondary); 
     color: var(--color-text-dark);
     padding: var(--spacing-md);
     border-radius: 15px;
@@ -1106,13 +1154,13 @@ footer p {
 
 .review-date {
     font-size: 0.9em;
-    color: #777;
+    color: var(--color-background-light);
 }
 
 .review-text {
     font-size: 1em;
     line-height: 1.5;
-    color: #555;
+    color: var(--color-background-light);
     margin-top: 15px;
     flex-grow: 1; 
 }

@@ -1,292 +1,167 @@
+/**
+ * IMUNITTÁ - script.js
+ */
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Lógica do Header:
-    const headerUrl = 'componenteshtml/header.html';
-    const placeholder = document.getElementById('header-placeholder');
-    // ... fetch para o header ...
-    fetch(headerUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Header file not found');
-            }
-            return response.text();
-        })
-        .then(data => {
-            placeholder.innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Erro ao carregar o cabeçalho:', error);
-        });
-    // Lógica do Footer:
-    const footerUrl = 'componenteshtml/footer.html';
-    const footerPlaceholder = document.getElementById('footer-placeholder');
-    fetch(footerUrl)
-        .then(response => response.ok ? response.text() : Promise.reject('Footer file not found'))
-        .then(data => { footerPlaceholder.innerHTML = data; })
-        .catch(error => { console.error('Erro ao carregar o rodapé:', error); });
+    // 1. CARREGAMENTO DE COMPONENTES (Header e Footer)
+    carregarHTML('header-placeholder', 'componenteshtml/header.html');
+    carregarHTML('footer-placeholder', 'componenteshtml/footer.html');
 
-    // ... e o resto do seu DOMContentLoaded, incluindo updateBannerBackgrounds();
-});
-
-
-// --- VARIÁVEIS GLOBAIS ---
-let currentSlide = 0;
-const slides = document.querySelectorAll('.banner-slide');
-const indicators = document.querySelectorAll('.indicator');
-const totalSlides = slides.length;
-const prevButton = document.querySelector('.banner-nav.prev');
-const nextButton = document.querySelector('.banner-nav.next');
-
-// --- 1. LÓGICA DO SLIDER ---
-function showSlide(n) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    indicators.forEach(indicator => indicator.classList.remove('active'));
-
-    currentSlide = (n + totalSlides) % totalSlides;
-
-    slides[currentSlide].classList.add('active');
-    indicators[currentSlide].classList.add('active');
-}
-
-function changeSlide(direction) {
-    showSlide(currentSlide + direction);
-}
-
-function goToSlide(n) {
-    showSlide(n);
-}
-
-// --- 2. LÓGICA DE IMAGEM RESPONSIVA ---
-function updateBannerBackgrounds() {
-    const bannerSlides = document.querySelectorAll('.banner-slide');
-    const isMobile = window.innerWidth <= 768;
-
-    bannerSlides.forEach(slide => {
-        let imageUrl;
-        // Prioridade: Imagem Mobile se a tela for pequena
-        if (isMobile) {
-            imageUrl = slide.getAttribute('data-mobile-src');
-        }
-
-        // Se não for mobile ou a imagem mobile não existir, usa a desktop
-        if (!imageUrl) {
-            imageUrl = slide.getAttribute('data-desktop-src');
-        }
-
-        if (imageUrl) {
-            slide.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${imageUrl}')`;
-            slide.style.backgroundSize = 'cover';
-            slide.style.backgroundPosition = 'center';
-        }
-    });
-
-    // **IMPORTANTE:** Garante que o slider comece com a imagem correta.
-    showSlide(currentSlide);
-}
-
-// --- 3. INICIALIZAÇÃO E EVENTOS ---
-
-// Inicialização do Banner (DEVE ser a primeira coisa a rodar no DOMContentLoaded)
-document.addEventListener('DOMContentLoaded', () => {
+    // 2. INICIALIZAÇÃO DE ELEMENTOS DINÂMICOS
     updateBannerBackgrounds();
-});
+    importarAvaliacoes();
+    inicializarExpansaoServicos();
 
-// Ação ao redimensionar a janela
-window.addEventListener('resize', updateBannerBackgrounds);
-
-// Auto-play do banner
-setInterval(() => {
-    changeSlide(1);
-}, 5000);
-
-if (prevButton && nextButton) {
-    prevButton.addEventListener('click', () => changeSlide(-1));
-    nextButton.addEventListener('click', () => changeSlide(1));
-}
-
-indicators.forEach(indicator => {
-    indicator.addEventListener('click', function () {
-        const slideIndex = parseInt(this.getAttribute('data-slide'));
-        goToSlide(slideIndex);
-    });
-});
-
-// Smooth scroll para os links internos (Seu código original)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        if (this.getAttribute('href') !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+    // 3. LÓGICA DE ROLAGEM SUAVE GLOBAL (Intercepta cliques no Header e Corpo)
+    document.addEventListener('click', function (e) {
+        // Busca o link (<a>) mais próximo do clique
+        const anchor = e.target.closest('a');
+        
+        // Verifica se é um link interno (contém #)
+        if (anchor && anchor.hash && (anchor.pathname === window.location.pathname || anchor.pathname === '/')) {
+            const target = document.querySelector(anchor.hash);
+            
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                e.preventDefault(); // Cancela o pulo seco do navegador
+                
+                const headerOffset = 90; // Espaço para o menu fixo não cobrir o título
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                // Executa a rolagem com suavidade via JS
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
+
+                // Fecha o menu mobile (caso exista essa classe no seu projeto)
+                const menu = document.querySelector('.nav-menu');
+                if (menu) menu.classList.remove('active');
+                
+                // Atualiza a URL sem dar o salto (opcional)
+                window.history.pushState(null, null, anchor.hash);
             }
         }
     });
 });
 
+// --- ROLAGEM AO CARREGAR PÁGINA (Vindo de outro arquivo HTML) ---
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            // Pequeno delay para garantir que o CSS e Header carregaram totalmente
+            setTimeout(() => {
+                const headerOffset = 90;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }, 400); 
+        }
+    }
+});
+
+// --- FUNÇÃO PARA COMPONENTES (HEADER/FOOTER) ---
+async function carregarHTML(id, url) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    try {
+        const res = await fetch(url);
+        if (res.ok) {
+            el.innerHTML = await res.text();
+        }
+    } catch (e) { console.error("Erro ao carregar componente:", url); }
+}
+
+// --- FUNÇÃO PARA IMPORTAR Depoimentos ---
+async function importarAvaliacoes() {
+    const destino = document.getElementById('render-reviews');
+    if (!destino) return;
+    try {
+        const response = await fetch('sobre.html');
+        const text = await response.text();
+        const doc = new DOMParser().parseFromString(text, 'text/html');
+        const conteudo = doc.getElementById('reviews-container');
+        if (conteudo) {
+            destino.innerHTML = conteudo.innerHTML;
+            setupReviewsCarousel(); 
+        }
+    } catch (e) { console.error("Erro ao importar avaliações"); }
+}
+
+// --- EXPANSÃO DOS CARDS DE SERVIÇO (CONTEÚDO DINÂMICO) ---
+function inicializarExpansaoServicos() {
+    const botoes = document.querySelectorAll('.btn-expandir');
+    const secaoPortal = document.getElementById('secao-detalhe-servico');
+    const containerConteudo = document.getElementById('conteudo-dinamico-servico');
+    const btnFechar = document.getElementById('btn-fechar-detalhe');
+
+    const informacoes = {
+        'vacinas': '<h2>Vacinas</h2><p>Cuidado completo do recém-nascido ao idoso com a segurança Imunittá.</p>',
+        'ginecologia': '<h2>Ginecologia</h2><p>Atendimento preventivo e cuidadoso para a saúde da mulher.</p>',
+        'obstetricia': '<h2>Obstetrícia</h2><p>Acompanhamento humanizado da gestação ao pós-parto.</p>',
+        'ultrassonografia': '<h2>Ultrassonografia</h2><p>Exames de imagem com tecnologia avançada e laudos precisos.</p>',
+        'psicologia': '<h2>Psicologia</h2><p>Apoio emocional para todas as idades com profissionais qualificados.</p>',
+        'nutricao': '<h2>Nutrição</h2><p>Equilíbrio alimentar para saúde, bem-estar e performance.</p>'
+    };
+
+    botoes.forEach(btn => {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            const tipo = this.getAttribute('data-servico');
+            if (informacoes[tipo]) {
+                containerConteudo.innerHTML = informacoes[tipo];
+                secaoPortal.classList.add('ativo');
+                
+                // Rola suavemente para a seção que acabou de abrir
+                const headerOffset = 100;
+                const offsetPosition = secaoPortal.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+        };
+    });
+
+    if (btnFechar) {
+        btnFechar.onclick = () => {
+            secaoPortal.classList.remove('ativo');
+            // Volta para a seção de serviços ao fechar
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        };
+    }
+}
+
+// --- CARROSSEL DE DEPOIMENTOS ---
 function setupReviewsCarousel() {
-    const slidesContainer = document.querySelector('.review-slides-container');
+    const container = document.querySelector('.review-slides-container');
+    if (!container) return;
     const slides = document.querySelectorAll('.review-slide-item');
-    const prevButton = document.querySelector('.review-nav.prev');
-    const nextButton = document.querySelector('.review-nav.next');
-    
-    // Configurações do Carrossel:
-    const totalSlides = slides.length;
-    const slidesPerView = window.innerWidth <= 768 ? 1 : 3; // 1 no mobile, 3 no desktop
-    let currentPosition = 0; // Posição atual do carrossel
+    const next = document.querySelector('.review-nav.next');
+    const prev = document.querySelector('.review-nav.prev');
+    const indicators = document.querySelectorAll('.review-indicator');
 
-    function updateCarousel() {
-        // Largura total necessária (ex: 3 slides no desktop, cada 33.33%, total 100%)
-        const visibleWidth = slidesContainer.parentElement.clientWidth;
+    let idx = 0;
+    const visible = window.innerWidth <= 768 ? 1 : 3;
+    const max = slides.length - visible;
+
+    const update = () => {
+        if (idx > max) idx = 0; 
+        if (idx < 0) idx = max;
+        container.style.transform = `translateX(-${idx * (100 / visible)}%)`;
         
-        // O offset é baseado na largura visível do contêiner
-        const offset = -currentPosition * (visibleWidth / slidesPerView);
-        
-        slidesContainer.style.transform = `translateX(${offset}px)`;
-    }
+        indicators.forEach((ind, i) => ind.classList.toggle('active', i === idx));
+    };
 
-    function move(direction) {
-        // Cálculo para limitar o movimento
-        const maxPosition = totalSlides - slidesPerView;
-        
-        currentPosition += direction;
-
-        if (currentPosition < 0) {
-            currentPosition = 0; // Não pode ir além do primeiro slide
-        } else if (currentPosition > maxPosition) {
-            currentPosition = maxPosition; // Não pode ir além do último slide
-        }
-
-        updateCarousel();
-    }
-
-    // Eventos
-    prevButton.addEventListener('click', () => move(-1));
-    nextButton.addEventListener('click', () => move(1));
-    window.addEventListener('resize', updateCarousel);
-
-    // Inicialização
-    updateCarousel();
+    if (next) next.onclick = () => { idx++; update(); };
+    if (prev) prev.onclick = () => { idx--; update(); };
+    indicators.forEach((ind, i) => ind.onclick = () => { idx = i; update(); });
 }
 
-
-
-function gtag_report_conversion(url) {
-    // 1. DISPARA O PIXEL IMEDIATAMENTE
-    gtag('event', 'conversion', {
-        'send_to': 'AW-17626641447/igmiCIqO7ccbEKfohNVB',
-        'value': 3.0,
-        'currency': 'BRL'
-    });
-    
-    // 2. ABRE O LINK EM UMA NOVA ABA/JANELA
-    window.open(url, '_blank'); 
-    
-    // 3. Opcional: Para evitar que a aba atual tente carregar o link também.
-    return false;
-}
-
-function setupReviewsCarousel() {
-    const wrapper = document.querySelector('.review-carousel-wrapper');
-    if (!wrapper) return; 
-
-    const slidesContainer = wrapper.querySelector('.review-slides-container');
-    const slides = wrapper.querySelectorAll('.review-slide-item');
-    const prevBtn = wrapper.querySelector('.review-nav.prev');
-    const nextBtn = wrapper.querySelector('.review-nav.next');
-    const indicators = wrapper.querySelectorAll('.review-indicator');
-
-    if (slides.length === 0) return;
-
-    let currentSlide = 0;
-    const totalSlides = slides.length; // 10 slides no seu HTML
-
-    // DETECÇÃO DE TELA (usando a mesma breakpoint do CSS: 768px)
+// --- BACKGROUNDS DO BANNER ---
+function updateBannerBackgrounds() {
+    const slides = document.querySelectorAll('.banner-slide');
     const isMobile = window.innerWidth <= 768;
-
-    // DEFINIÇÃO DAS VARIÁVEIS RESPONSIVAS
-    let visibleSlides;
-    let step;
-    let maxIndex;
-
-    if (isMobile) {
-        // MOBILE (1 item por vez): step=1, maxIndex=9
-        visibleSlides = 1;
-        step = 1;
-        maxIndex = 9; 
-        
-    } else {
-        // PC (DESKTOP) (2 itens por vez): step=2, maxIndex=8
-        visibleSlides = 3;
-        step = 3;
-        maxIndex = 9; 
-    }
-
-    // Função principal para mostrar o slide, com LOOP INFINITO
-    function showSlide(index) {
-        
-        // --- LÓGICA DE LOOP INFINITO ---
-        // Se avançar além do maxIndex, volta para 0
-        if (index > maxIndex) {
-            index = 0; 
-        } 
-        // Se retroceder além de 0, volta para o último índice visível (maxIndex)
-        else if (index < 0) {
-            index = maxIndex; 
-        }
-        
-        currentSlide = index;
-
-        // Calcula o deslocamento horizontal. 
-        // No PC (visibleSlides=2), isso é -currentSlide * 50%.
-        // No Mobile (visibleSlides=1), isso é -currentSlide * 100%.
-        const offset = -currentSlide * (100 / visibleSlides);
-        slidesContainer.style.transform = `translateX(${offset}%)`;
-
-        // O índice do indicador ativo é a posição atual dividida pelo passo
-        const activeIndicatorIndex = Math.floor(currentSlide / step); 
-        
-        // Atualiza a classe 'active' nos indicadores
-        indicators.forEach((indicator, i) => {
-            indicator.classList.toggle('active', i === activeIndicatorIndex);
-        });
-        
-        // Botões permanecem habilitados
-        if (prevBtn) {
-            prevBtn.disabled = false;
-        }
-        if (nextBtn) {
-            nextBtn.disabled = false;
-        }
-    }
-
-    // Funções de navegação que usam o STEP correto para PC ou Mobile
-    function nextSlide() {
-        showSlide(currentSlide + step);
-    }
-
-    function prevSlide() {
-        showSlide(currentSlide - step);
-    }
-
-    // Adiciona Event Listeners
-    if (prevBtn) {
-        prevBtn.addEventListener('click', prevSlide);
-    }
-    if (nextBtn) {
-        nextBtn.addEventListener('click', nextSlide);
-    }
-
-    // Event listener para indicadores
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            // Leva para o início da página correspondente ao indicador (index * step)
-            showSlide(index * step); 
-        });
+    slides.forEach(s => {
+        const img = isMobile ? s.dataset.mobileSrc : s.dataset.desktopSrc;
+        if (img) s.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${img}')`;
     });
-    
-    // Mostra o slide inicial
-    showSlide(currentSlide);
 }
