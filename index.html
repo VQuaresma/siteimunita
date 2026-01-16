@@ -19,6 +19,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
 
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17626641447"></script>
@@ -33,54 +34,73 @@
 </head>
 
 <body>
-    <header id="header-placeholder">
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <a href="../index.html"><img src="logo/logo-imunitta.png" alt="Imunittá - Vacina e Saúde"
+                        class="logo"></a>
+            </div>
+
+            <div class="contact-info-header">
+                <a href="https://www.instagram.com/imunittacanaa" target="_blank" aria-label="Instagram Imunittá">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="tel:+5594992880636" class="phone-number">
+                    <i class="fas fa-phone"></i> (94) 99288-0636
+                </a>
+            </div>
+
+            <nav class="nav-text">
+                <ul>
+                    <li><a href="../index.html#sobre">Sobre</a></li>
+                    <li><a href="#">Serviços</a></li>
+                    <li><a href="../index.html#localizacao">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section class="banner-slider">
-        <div class="banner-slide active" data-desktop-src="fotos-clinica/banner1.jpg"
-            data-mobile-src="fotos-clinica/bannermobile1.jpeg">
-            <div class="banner-content">
-                <h2>Proteja sua Família</h2>
-                <p>Vacinas de qualidade para todas as idades, do recém-nascido ao idoso, com segurança e qualidade
-                    garantidas.</p>
-                <a href="javascript:void(0)"
-                    onclick="return gtag_report_conversion('https://wa.me/5594992880636?text=Ola%20vim%20pelo%20site%2C%20queria%20marcar%20um%20procedimento.')"
-                    class="btn btn-primary">Fale Conosco
+   <section class="relative bg-[#f0f7e7] py-12 md:py-20"> <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+        
+        <div class="w-full md:w-1/2 text-center md:text-left order-2 md:order-1">
+            <span class="text-blue-500 font-bold uppercase tracking-widest text-xs mb-3 block">
+                Cuidado e Proteção
+            </span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-[#2c5d6d] leading-tight mb-6">
+                Sua saúde em <span class="text-blue-600">primeiro lugar</span>, sempre.
+            </h1>
+            <p class="text-gray-600 text-base md:text-lg mb-8 leading-relaxed max-w-md mx-auto md:mx-0">
+                Vacinas de alta qualidade, ginecologia, obstetrícia e muito mais. Atendimento humanizado para proteger sua família.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="https://wa.me/5594992880636" class="bg-[#3b82f6] hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold shadow-md transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Agendar Agora
+                </a>
+                <a href="#services" class="bg-white border border-gray-200 hover:border-blue-400 text-gray-600 px-8 py-3 rounded-full font-bold transition-all flex items-center justify-center">
+                    Ver Serviços
                 </a>
             </div>
+            
+            <p class="mt-6 text-gray-400 text-xs font-medium">
+                +1.000 famílias atendidas em Canaã dos Carajás
+            </p>
         </div>
-        <div class="banner-slide" data-desktop-src="fotos-clinica/banner2.jpg"
-            data-mobile-src="fotos-clinica/bannermobile2.jpeg">
-            <div class="banner-content">
-                <h2>Cuidado Especializado</h2>
-                <p>Equipe médica qualificada e atendimento humanizado.</p>
-                <a href="javascript:void(0)"
-                    onclick="return gtag_report_conversion('https://wa.me/5594992880636?text=Ola%20vim%20pelo%20site%2C%20queria%20marcar%20um%20procedimento.')"
-                    class="btn btn-primary">Fale Conosco
-                </a>
-            </div>
-        </div>
-        <div class="banner-slide" data-desktop-src="fotos-clinica/banner3.jpg"
-            data-mobile-src="fotos-clinica/bannermobile3.jpeg">
-            <div class="banner-content">
-                <h2>Sua Saúde em Primeiro Lugar</h2>
-                <p>Infraestrutura moderna e confortável para toda a sua família.</p>
-                <a href="javascript:void(0)"
-                    onclick="return gtag_report_conversion('https://wa.me/5594992880636?text=Ola%20vim%20pelo%20site%2C%20queria%20marcar%20um%20procedimento.')"
-                    class="btn btn-primary">Fale Conosco
-                </a>
+
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end order-1 md:order-2">
+            <div class="relative w-full max-w-[280px] md:max-w-[320px] rounded-[2.5rem] overflow-hidden shadow-xl border-[8px] border-[#1e293b] bg-white aspect-[9/16]">
+                <blockquote class="instagram-media" 
+                    data-instgrm-permalink="https://www.instagram.com/reel/DQrMKZeDnfE/" 
+                    data-instgrm-version="14" 
+                    style="width:100%; height:100%; margin:0; padding:0; border:0;">
+                </blockquote>
             </div>
         </div>
 
-        <button class="banner-nav prev" aria-label="Anterior"><i class="bi bi-chevron-left"></i></button>
-        <button class="banner-nav next" aria-label="Próximo"><i class="bi bi-chevron-right"></i></button>
+    </div>
+</section>
 
-        <div class="banner-indicators">
-            <span class="indicator active" data-slide="0"></span>
-            <span class="indicator" data-slide="1"></span>
-            <span class="indicator" data-slide="2"></span>
-        </div>
-    </section>
+<script async src="//www.instagram.com/embed.js"></script>
 
     <section class="services" id="services">
         <h2>Nossos Serviços</h2>
@@ -220,7 +240,12 @@
         </div>
     </section>
 
-    <footer id="footer-placeholder"></footer>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Imunittá - Vacina e Saúde. Todos os direitos reservados.</p>
+            <p>Cuidando da sua saúde com amor e dedicação ❤️</p>
+        </div>
+    </footer>
 
     <a href="https://wa.me/5594992880636?text=Ola%20vim%20pelo%20site%2C%20queria%20marcar%20um%20procedimento."
         class="whatsapp-bubble" target="_blank" aria-label="Fale conosco pelo WhatsApp">

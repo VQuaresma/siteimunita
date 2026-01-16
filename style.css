@@ -4,9 +4,7 @@
 /* ======================================= */
 
 /* Força a suavidade nativa em todo o documento */
-html {
-    scroll-behavior: smooth !important;
-}
+
 
 /* Evita que o título da seção fique colado no topo (atrás do header) */
 #sobre, #services, #localizacao, #contact, #render-reviews {

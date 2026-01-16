@@ -1,58 +1,68 @@
 /**
- * IMUNITTÁ - script.js
+ * IMUNITTÁ - script.js (Versão Hero Video + Tailwind)
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    // 1. CARREGAMENTO DE COMPONENTES (Header e Footer)
+    // 1. CARREGAMENTO DE COMPONENTES
+    // Se você não estiver usando arquivos separados para header/footer, pode remover essas linhas
     carregarHTML('header-placeholder', 'componenteshtml/header.html');
     carregarHTML('footer-placeholder', 'componenteshtml/footer.html');
 
-    // 2. INICIALIZAÇÃO DE ELEMENTOS DINÂMICOS
-    updateBannerBackgrounds();
+    // 2. INICIALIZAÇÃO
     importarAvaliacoes();
     inicializarExpansaoServicos();
+    configurarScrollSuave();
 
-    // 3. LÓGICA DE ROLAGEM SUAVE GLOBAL (Intercepta cliques no Header e Corpo)
+    // 3. RECARREGAR VÍDEO DO INSTAGRAM (Caso necessário em redimensionamento)
+    window.addEventListener('resize', () => {
+        // Otimização: evita que o vídeo quebre em mudanças bruscas de tela
+        if (window.instgrm) {
+            window.instgrm.Embeds.process();
+        }
+    });
+});
+
+/**
+ * CONFIGURAÇÃO DE ROLAGEM SUAVE
+ * Ajustado para compensar a altura do Header fixo do Tailwind
+ */
+function configurarScrollSuave() {
     document.addEventListener('click', function (e) {
-        // Busca o link (<a>) mais próximo do clique
         const anchor = e.target.closest('a');
         
-        // Verifica se é um link interno (contém #)
         if (anchor && anchor.hash && (anchor.pathname === window.location.pathname || anchor.pathname === '/')) {
             const target = document.querySelector(anchor.hash);
             
             if (target) {
-                e.preventDefault(); // Cancela o pulo seco do navegador
+                e.preventDefault();
                 
-                const headerOffset = 90; // Espaço para o menu fixo não cobrir o título
+                // Altura do seu header fixo (ajuste se mudar o tamanho do menu)
+                const headerOffset = 80; 
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-                // Executa a rolagem com suavidade via JS
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
 
-                // Fecha o menu mobile (caso exista essa classe no seu projeto)
+                // Fecha menu mobile se houver
                 const menu = document.querySelector('.nav-menu');
                 if (menu) menu.classList.remove('active');
                 
-                // Atualiza a URL sem dar o salto (opcional)
                 window.history.pushState(null, null, anchor.hash);
             }
         }
     });
-});
+}
 
-// --- ROLAGEM AO CARREGAR PÁGINA (Vindo de outro arquivo HTML) ---
+// --- ROLAGEM AO CARREGAR PÁGINA (Vindo de links externos) ---
 window.addEventListener('load', () => {
     if (window.location.hash) {
         const target = document.querySelector(window.location.hash);
         if (target) {
-            // Pequeno delay para garantir que o CSS e Header carregaram totalmente
             setTimeout(() => {
-                const headerOffset = 90;
+                const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -61,7 +71,7 @@ window.addEventListener('load', () => {
     }
 });
 
-// --- FUNÇÃO PARA COMPONENTES (HEADER/FOOTER) ---
+// --- FUNÇÃO PARA COMPONENTES ---
 async function carregarHTML(id, url) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -69,27 +79,13 @@ async function carregarHTML(id, url) {
         const res = await fetch(url);
         if (res.ok) {
             el.innerHTML = await res.text();
+            // Re-processa embeds caso o header/footer tenha algo do tipo
+            if (window.instgrm) window.instgrm.Embeds.process();
         }
     } catch (e) { console.error("Erro ao carregar componente:", url); }
 }
 
-// --- FUNÇÃO PARA IMPORTAR Depoimentos ---
-async function importarAvaliacoes() {
-    const destino = document.getElementById('render-reviews');
-    if (!destino) return;
-    try {
-        const response = await fetch('sobre.html');
-        const text = await response.text();
-        const doc = new DOMParser().parseFromString(text, 'text/html');
-        const conteudo = doc.getElementById('reviews-container');
-        if (conteudo) {
-            destino.innerHTML = conteudo.innerHTML;
-            setupReviewsCarousel(); 
-        }
-    } catch (e) { console.error("Erro ao importar avaliações"); }
-}
-
-// --- EXPANSÃO DOS CARDS DE SERVIÇO (CONTEÚDO DINÂMICO) ---
+// --- EXPANSÃO DOS CARDS DE SERVIÇO ---
 function inicializarExpansaoServicos() {
     const botoes = document.querySelectorAll('.btn-expandir');
     const secaoPortal = document.getElementById('secao-detalhe-servico');
@@ -113,7 +109,6 @@ function inicializarExpansaoServicos() {
                 containerConteudo.innerHTML = informacoes[tipo];
                 secaoPortal.classList.add('ativo');
                 
-                // Rola suavemente para a seção que acabou de abrir
                 const headerOffset = 100;
                 const offsetPosition = secaoPortal.getBoundingClientRect().top + window.pageYOffset - headerOffset;
                 window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -124,13 +119,27 @@ function inicializarExpansaoServicos() {
     if (btnFechar) {
         btnFechar.onclick = () => {
             secaoPortal.classList.remove('ativo');
-            // Volta para a seção de serviços ao fechar
             document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
         };
     }
 }
 
-// --- CARROSSEL DE DEPOIMENTOS ---
+// --- IMPORTAR AVALIAÇÕES E SETUP CARROSSEL ---
+async function importarAvaliacoes() {
+    const destino = document.getElementById('render-reviews');
+    if (!destino) return;
+    try {
+        const response = await fetch('sobre.html');
+        const text = await response.text();
+        const doc = new DOMParser().parseFromString(text, 'text/html');
+        const conteudo = doc.getElementById('reviews-container');
+        if (conteudo) {
+            destino.innerHTML = conteudo.innerHTML;
+            setupReviewsCarousel(); 
+        }
+    } catch (e) { console.error("Erro ao importar avaliações"); }
+}
+
 function setupReviewsCarousel() {
     const container = document.querySelector('.review-slides-container');
     if (!container) return;
@@ -140,28 +149,16 @@ function setupReviewsCarousel() {
     const indicators = document.querySelectorAll('.review-indicator');
 
     let idx = 0;
-    const visible = window.innerWidth <= 768 ? 1 : 3;
-    const max = slides.length - visible;
-
     const update = () => {
+        const visible = window.innerWidth <= 768 ? 1 : 3;
+        const max = slides.length - visible;
         if (idx > max) idx = 0; 
         if (idx < 0) idx = max;
         container.style.transform = `translateX(-${idx * (100 / visible)}%)`;
-        
         indicators.forEach((ind, i) => ind.classList.toggle('active', i === idx));
     };
 
     if (next) next.onclick = () => { idx++; update(); };
     if (prev) prev.onclick = () => { idx--; update(); };
     indicators.forEach((ind, i) => ind.onclick = () => { idx = i; update(); });
-}
-
-// --- BACKGROUNDS DO BANNER ---
-function updateBannerBackgrounds() {
-    const slides = document.querySelectorAll('.banner-slide');
-    const isMobile = window.innerWidth <= 768;
-    slides.forEach(s => {
-        const img = isMobile ? s.dataset.mobileSrc : s.dataset.desktopSrc;
-        if (img) s.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${img}')`;
-    });
 }
