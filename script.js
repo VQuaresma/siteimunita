@@ -1,167 +1,151 @@
-/**
- * IMUNITTÁ - script.js
- */
+// --- Lógica do Carrossel (Troca automática a cada 5 segundos) ---
+const slides = document.querySelectorAll('.banner-slide');
+const dots = document.querySelectorAll('.dot');
+let currentSlide = 0;
 
-document.addEventListener('DOMContentLoaded', function () {
-    // 1. CARREGAMENTO DE COMPONENTES (Header e Footer)
-    carregarHTML('header-placeholder', 'componenteshtml/header.html');
-    carregarHTML('footer-placeholder', 'componenteshtml/footer.html');
-
-    // 2. INICIALIZAÇÃO DE ELEMENTOS DINÂMICOS
-    updateBannerBackgrounds();
-    importarAvaliacoes();
-    inicializarExpansaoServicos();
-
-    // 3. LÓGICA DE ROLAGEM SUAVE GLOBAL (Intercepta cliques no Header e Corpo)
-    document.addEventListener('click', function (e) {
-        // Busca o link (<a>) mais próximo do clique
-        const anchor = e.target.closest('a');
-        
-        // Verifica se é um link interno (contém #)
-        if (anchor && anchor.hash && (anchor.pathname === window.location.pathname || anchor.pathname === '/')) {
-            const target = document.querySelector(anchor.hash);
-            
-            if (target) {
-                e.preventDefault(); // Cancela o pulo seco do navegador
-                
-                const headerOffset = 90; // Espaço para o menu fixo não cobrir o título
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                // Executa a rolagem com suavidade via JS
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Fecha o menu mobile (caso exista essa classe no seu projeto)
-                const menu = document.querySelector('.nav-menu');
-                if (menu) menu.classList.remove('active');
-                
-                // Atualiza a URL sem dar o salto (opcional)
-                window.history.pushState(null, null, anchor.hash);
-            }
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        if (i === index) {
+            slide.classList.replace('opacity-0', 'opacity-100');
+            slide.classList.add('z-20');
+            slide.classList.remove('z-10');
+            dots[i].classList.replace('bg-opacity-40', 'bg-opacity-100');
+            dots[i].classList.replace('w-3', 'w-8');
+        } else {
+            slide.classList.replace('opacity-100', 'opacity-0');
+            slide.classList.add('z-10');
+            slide.classList.remove('z-20');
+            dots[i].classList.replace('bg-opacity-100', 'bg-opacity-40');
+            dots[i].classList.replace('w-8', 'w-3');
         }
+    });
+}
+
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}, 5000);
+
+dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { 
+        currentSlide = i; 
+        showSlide(i); 
     });
 });
 
-// --- ROLAGEM AO CARREGAR PÁGINA (Vindo de outro arquivo HTML) ---
-window.addEventListener('load', () => {
-    if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-            // Pequeno delay para garantir que o CSS e Header carregaram totalmente
-            setTimeout(() => {
-                const headerOffset = 90;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }, 400); 
-        }
+// --- Banco de Dados dos Serviços ---
+const modalData = {
+    vacinas: { 
+        title: "Nossas Vacinas", 
+        icon: "bi-shield-check",
+        items: [
+            { n: "BCG", d: "Protege contra formas graves da Tuberculose." },
+            { n: "Hepatite B", d: "Previne infecções hepáticas crônicas." },
+            { n: "Nirsevimabe", d: "Prevenção do VSR em bebês." },
+            { n: "Rotavírus", d: "Protege contra diarreias graves." },
+            { n: "Tríplice Bacteriana", d: "Difteria, Tétano e Coqueluche." },
+            { n: "Poliomielite (VIP)", d: "Protege contra a paralisia infantil." },
+            { n: "Pneumocócica", d: "Protege contra Pneumonia e Meningite." },
+            { n: "Meningocócica (ACWY/B)", d: "Proteção contra tipos de Meningite." },
+            { n: "Influenza (Gripe)", d: "Vacina anual essencial." },
+            { n: "Febre Amarela", d: "Importante para áreas de risco." },
+            { n: "HPV", d: "Previne cânceres e verrugas genitais." },
+            { n: "Herpes Zóster", d: "Prevenção do 'Cobreiro'." },
+            { n: "Dengue", d: "Prevenção da doença." },
+            { n: "COVID-19", d: "Proteção contra o Coronavírus." },
+            { n: "SCR", d: "Sarampo, Caxumba e Rubéola." }
+        ]
+    },
+    ginecologia: { 
+        title: "Saúde da Mulher", 
+        text: "Oferecemos acompanhamento atencioso e preventivo, incluindo exames de rotina e orientações especializadas para todas as fases da vida.", 
+        icon: "bi-heart-pulse" 
+    },
+    obstetricia: { 
+        title: "Gestação e Pré-Natal", 
+        text: "Cuidado completo para a mãe e o bebê, desde a concepção até o pós-parto, com monitoramento humanizado e tecnologia de ponta.", 
+        icon: "bi-stars" 
     }
+};
+
+// --- Funções do Modal ---
+window.openModal = function(service) {
+    const data = modalData[service];
+    const modal = document.getElementById('serviceModal');
+    const content = document.getElementById('modalContent');
+    const body = document.getElementById('modalBody');
+
+    let innerContent = "";
+
+    if (service === 'vacinas') {
+        // Layout especial para Vacinas (Grid)
+        innerContent = `
+            <div class="text-[#2C5F8D] text-4xl mb-2 text-center"><i class="bi ${data.icon}"></i></div>
+            <h2 class="text-2xl font-bold text-[#2C5F8D] mb-4 text-center">${data.title}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6 max-h-[350px] overflow-y-auto pr-2 custom-scrollbar text-left">
+                ${data.items.map(item => `
+                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-100">
+                        <h4 class="font-bold text-[#2C5F8D] text-sm">${item.n}</h4>
+                        <p class="text-xs text-gray-500 leading-tight">${item.d}</p>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    } else {
+        // Layout Padrão (Usado para Ginecologia e agora também para Obstetrícia)
+        innerContent = `
+            <div class="text-[#2C5F8D] text-5xl mb-4 text-center"><i class="bi ${data.icon}"></i></div>
+            <h2 class="text-2xl font-bold text-[#2C5F8D] mb-4 text-center">${data.title}</h2>
+            <p class="text-gray-600 mb-6 leading-relaxed text-center">${data.text}</p>
+        `;
+    }
+
+    body.innerHTML = `
+        ${innerContent}
+        <div class="space-y-3">
+            <a href="https://wa.me/5594992880636" class="block text-center bg-green-500 text-white font-bold py-3 rounded-xl hover:bg-green-600 transition-colors shadow-md">
+                Agendar Atendimento
+            </a>
+            <a href="https://www.google.com/maps/dir//Imunitt%C3%A1+Vacina+e+Sa%C3%BAde,+Esquina+com+-+Avenida+Agenor+Gon%C3%A7alves+de+Paiva+10,+Rua+Itacaiunas,+Bairro+-+Qd+47,+Lt+10+-+Alto+Bonito+II,+Cana%C3%A3+dos+Caraj%C3%A1s+-+PA,+Brasil/data=!4m9!4m8!1m0!1m5!1m1!19sChIJs9_VbTid3ZIR7skgBn0wDcw!2m2!1d-49.844096199999996!2d-6.5234014!3e0" target="_blank" class="block text-center text-[#2C5F8D] text-sm font-semibold hover:underline">
+                <i class="bi bi-geo-alt"></i> Traçar rota para a clínica
+            </a>
+        </div>
+    `;
+
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+    }, 10);
+};
+
+window.closeModal = function() {
+    const modal = document.getElementById('serviceModal');
+    const content = document.getElementById('modalContent');
+    content.classList.replace('scale-100', 'scale-95');
+    content.classList.replace('opacity-100', 'opacity-0');
+    setTimeout(() => { modal.classList.add('hidden'); }, 300);
+};
+
+window.addEventListener('click', (e) => {
+    const modal = document.getElementById('serviceModal');
+    if (e.target === modal) closeModal();
 });
 
-// --- FUNÇÃO PARA COMPONENTES (HEADER/FOOTER) ---
-async function carregarHTML(id, url) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    try {
-        const res = await fetch(url);
-        if (res.ok) {
-            el.innerHTML = await res.text();
+// --- Rolagem Suave ---
+const menuLinks = document.querySelectorAll('nav a[href^="#"]');
+menuLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const id = this.getAttribute('href');
+        const targetSection = document.querySelector(id);
+        if (targetSection) {
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = targetSection.offsetTop - headerHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
         }
-    } catch (e) { console.error("Erro ao carregar componente:", url); }
-}
-
-// --- FUNÇÃO PARA IMPORTAR Depoimentos ---
-async function importarAvaliacoes() {
-    const destino = document.getElementById('render-reviews');
-    if (!destino) return;
-    try {
-        const response = await fetch('sobre.html');
-        const text = await response.text();
-        const doc = new DOMParser().parseFromString(text, 'text/html');
-        const conteudo = doc.getElementById('reviews-container');
-        if (conteudo) {
-            destino.innerHTML = conteudo.innerHTML;
-            setupReviewsCarousel(); 
-        }
-    } catch (e) { console.error("Erro ao importar avaliações"); }
-}
-
-// --- EXPANSÃO DOS CARDS DE SERVIÇO (CONTEÚDO DINÂMICO) ---
-function inicializarExpansaoServicos() {
-    const botoes = document.querySelectorAll('.btn-expandir');
-    const secaoPortal = document.getElementById('secao-detalhe-servico');
-    const containerConteudo = document.getElementById('conteudo-dinamico-servico');
-    const btnFechar = document.getElementById('btn-fechar-detalhe');
-
-    const informacoes = {
-        'vacinas': '<h2>Vacinas</h2><p>Cuidado completo do recém-nascido ao idoso com a segurança Imunittá.</p>',
-        'ginecologia': '<h2>Ginecologia</h2><p>Atendimento preventivo e cuidadoso para a saúde da mulher.</p>',
-        'obstetricia': '<h2>Obstetrícia</h2><p>Acompanhamento humanizado da gestação ao pós-parto.</p>',
-        'ultrassonografia': '<h2>Ultrassonografia</h2><p>Exames de imagem com tecnologia avançada e laudos precisos.</p>',
-        'psicologia': '<h2>Psicologia</h2><p>Apoio emocional para todas as idades com profissionais qualificados.</p>',
-        'nutricao': '<h2>Nutrição</h2><p>Equilíbrio alimentar para saúde, bem-estar e performance.</p>'
-    };
-
-    botoes.forEach(btn => {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            const tipo = this.getAttribute('data-servico');
-            if (informacoes[tipo]) {
-                containerConteudo.innerHTML = informacoes[tipo];
-                secaoPortal.classList.add('ativo');
-                
-                // Rola suavemente para a seção que acabou de abrir
-                const headerOffset = 100;
-                const offsetPosition = secaoPortal.getBoundingClientRect().top + window.pageYOffset - headerOffset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
-        };
     });
-
-    if (btnFechar) {
-        btnFechar.onclick = () => {
-            secaoPortal.classList.remove('ativo');
-            // Volta para a seção de serviços ao fechar
-            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
-        };
-    }
-}
-
-// --- CARROSSEL DE DEPOIMENTOS ---
-function setupReviewsCarousel() {
-    const container = document.querySelector('.review-slides-container');
-    if (!container) return;
-    const slides = document.querySelectorAll('.review-slide-item');
-    const next = document.querySelector('.review-nav.next');
-    const prev = document.querySelector('.review-nav.prev');
-    const indicators = document.querySelectorAll('.review-indicator');
-
-    let idx = 0;
-    const visible = window.innerWidth <= 768 ? 1 : 3;
-    const max = slides.length - visible;
-
-    const update = () => {
-        if (idx > max) idx = 0; 
-        if (idx < 0) idx = max;
-        container.style.transform = `translateX(-${idx * (100 / visible)}%)`;
-        
-        indicators.forEach((ind, i) => ind.classList.toggle('active', i === idx));
-    };
-
-    if (next) next.onclick = () => { idx++; update(); };
-    if (prev) prev.onclick = () => { idx--; update(); };
-    indicators.forEach((ind, i) => ind.onclick = () => { idx = i; update(); });
-}
-
-// --- BACKGROUNDS DO BANNER ---
-function updateBannerBackgrounds() {
-    const slides = document.querySelectorAll('.banner-slide');
-    const isMobile = window.innerWidth <= 768;
-    slides.forEach(s => {
-        const img = isMobile ? s.dataset.mobileSrc : s.dataset.desktopSrc;
-        if (img) s.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${img}')`;
-    });
-}
+});
