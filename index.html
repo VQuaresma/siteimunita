@@ -66,6 +66,7 @@
 
             <nav>
                 <ul class="flex gap-4 md:gap-8 text-[#466d83] font-medium text-xs md:text-lg">
+                    <li><a href="#equipe" class="hover:text-[#4A90E2]">Consultas</a></li>
                     <li><a href="#services" class="hover:text-[#4A90E2]">Serviços</a></li>
                     <li><a href="#localizacao" class="hover:text-[#4A90E2]">Localização</a></li>
                     <li><a href="#sobre" class="hover:text-[#4A90E2]">Sobre</a></li>
@@ -153,7 +154,7 @@
                         <p class="italic">"Meu trabalho é integrar ciência e acolhimento para que você se sinta plena em cada fase da vida."</p>
                     </div>
                     <a href="/ginecologia" class="group flex items-center justify-between bg-[#2C5F8D] text-white pl-8 pr-2 py-2 rounded-full font-bold hover:bg-[#1e4466] transition-all shadow-lg max-w-xs">
-                        <span>Conhecer a Dra. Camila</span>
+                        <span>Agende agora sua consulta</span>
                         <div class="bg-white/20 p-2 rounded-full group-hover:translate-x-1 transition-transform">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7" /></svg>
                         </div>
@@ -176,7 +177,7 @@
                         <p>Especialista em transformar a relação com a comida, focando em resultados reais e duradouros para atletas e entusiastas.</p>
                     </div>
                     <a href="/nutricao" class="group flex items-center justify-between bg-[#2C5F8D] text-white pl-8 pr-2 py-2 rounded-full font-bold hover:bg-[#1e4466] transition-all shadow-lg max-w-xs">
-                        <span>Ver Perfil da Nutri</span>
+                        <span>Agende agora sua consulta</span>
                         <div class="bg-white/20 p-2 rounded-full group-hover:translate-x-1 transition-transform">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7" /></svg>
                         </div>
@@ -194,12 +195,12 @@
                 <div class="w-full md:w-3/5 lg:w-1/2">
                     <span class="bg-[#2C5F8D] text-white px-4 py-1 rounded-full text-xs font-bold shadow-sm inline-block mb-4">CREFITO 0000</span>
                     <h4 class="text-4xl font-bold text-gray-800 mb-2">Dra. Hellen</h4>
-                    <p class="text-xl text-[#2C5F8D] font-medium mb-6">Fisioterapia Pélvica / Traumato-Ortopédica</p>
+                    <p class="text-xl text-[#2C5F8D] font-medium mb-6">Fisioterapia Pélvica</p>
                     <div class="text-gray-600 leading-relaxed mb-8 border-l-2 border-[#2C5F8D]/20 pl-4 bg-white/40 p-4 rounded-r-xl">
                         <p>Foco em reabilitação funcional, alívio de dores e melhora da qualidade de vida através de protocolos personalizados.</p>
                     </div>
                     <a href="/fisioterapia" class="group flex items-center justify-between bg-[#2C5F8D] text-white pl-8 pr-2 py-2 rounded-full font-bold hover:bg-[#1e4466] transition-all shadow-lg max-w-xs">
-                        <span>Ver Perfil da Fisio</span>
+                        <span>Agende agora sua consulta</span>
                         <div class="bg-white/20 p-2 rounded-full group-hover:translate-x-1 transition-transform">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 5l7 7-7 7" /></svg>
                         </div>
@@ -212,41 +213,76 @@
 </section>
 
     <section class="bg-[#f1f8d3] py-16 px-6 relative" id="services">
-        <h2 class="text-center text-3xl md:text-4xl font-bold text-[#2C5F8D] mb-12">Nossos Serviços</h2>
-        <div class="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+    <h2 class="text-center text-3xl md:text-4xl font-bold text-[#2C5F8D] mb-12">Nossos Serviços</h2>
+    
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
 
-            <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
-                <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden border-2 border-white/30 flex items-center justify-center">
-                    <img src="fotos-serviços/vacina.jpg" class="w-full h-full object-cover" alt="Vacinas" loading="lazy">
-                </div>
-                <h3 class="text-white text-xl font-bold mb-2">Vacinas</h3>
-                <p class="text-white/90 text-sm leading-relaxed mb-6">Vacinas para todas as idades com segurança e qualidade garantidas.</p>
-                <button onclick="openModal('vacinas')"
-                    class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
+        <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden border-2 border-white/30 flex items-center justify-center">
+                <img src="fotos-serviços/vacina.jpg" class="w-full h-full object-cover" alt="Vacinas" loading="lazy">
             </div>
-
-            <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
-                <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden flex items-center justify-center">
-                    <img src="fotos-serviços/Ginecologia.jpg" class="w-full h-full object-cover" alt="Ginecologia" loading="lazy">
-                </div>
-                <h3 class="text-white text-xl font-bold mb-2">Ginecologia</h3>
-                <p class="text-white/90 text-sm leading-relaxed mb-6">Um acompanhamento atencioso e preventivo para sua saúde.</p>
-                <button onclick="openModal('ginecologia')"
-                    class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
-            </div>
-
-            <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
-                <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden flex items-center justify-center">
-                    <img src="fotos-serviços/Obstetrícia.jpg" class="w-full h-full object-cover" alt="Obstetrícia" loading="lazy">
-                </div>
-                <h3 class="text-white text-xl font-bold mb-2">Obstetrícia</h3>
-                <p class="text-white/90 text-sm leading-relaxed mb-6">Cuidado completo para a mãe e o bebê, da concepção ao pós-parto.</p>
-                <button onclick="openModal('obstetricia')"
-                    class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
-            </div>
+            <h3 class="text-white text-xl font-bold mb-2">Vacinas</h3>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">Proteção completa para todas as fases da vida com um calendário vacinal atualizado.</p>
+            <button onclick="openModal('vacinas')" class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
         </div>
-        <img src="icons/3.png" class="absolute bottom-0 right-0 w-32 md:w-64 opacity-80 pointer-events-none" alt="Mascote Imunittá">
-    </section>
+
+        <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden border-2 border-white/30 flex items-center justify-center">
+                <img src="fotos-serviços/furodeorelha.jpeg" class="w-full h-full object-cover" alt="Furo de Orelha" loading="lazy">
+            </div>
+            <h3 class="text-white text-xl font-bold mb-2">Furo de Orelha</h3>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">Procedimento humanizado e seguro, realizado com técnicas que garantem o máximo conforto.</p>
+            <button onclick="openModal('furo-orelha')" class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
+        </div>
+
+        <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden border-2 border-white/30 flex items-center justify-center">
+                <img src="fotos-serviços/ultrassom.jpg" class="w-full h-full object-cover" alt="Ultrassom" loading="lazy">
+            </div>
+            <h3 class="text-white text-xl font-bold mb-2">Ultrassom</h3>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">Exames de imagem precisos para diagnósticos seguros e acompanhamento preventivo da sua saúde.</p>
+            <button onclick="openModal('ultrassom')" class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
+        </div>
+
+        <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden border-2 border-white/30 flex items-center justify-center">
+                <img src="fotos-serviços/fisioterapia.jpg" class="w-full h-full object-cover" alt="Fisioterapia" loading="lazy">
+            </div>
+            <h3 class="text-white text-xl font-bold mb-2">Fisioterapia</h3>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">Reabilitação funcional e tratamentos personalizados para o alívio de dores e melhora da mobilidade.</p>
+            <button onclick="openModal('fisioterapia')" class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
+        </div>
+
+        <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden border-2 border-white/30 flex items-center justify-center">
+                <img src="fotos-serviços/injetaveis.jpeg" class="w-full h-full object-cover" alt="Injetáveis" loading="lazy">
+            </div>
+            <h3 class="text-white text-xl font-bold mb-2">Injetáveis</h3>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">Aplicação técnica de medicamentos injetáveis com segurança, higiene e cuidado profissional.</p>
+            <button onclick="openModal('injetaveis')" class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
+        </div>
+
+        <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden flex items-center justify-center border-2 border-white/30">
+                <img src="fotos-serviços/Ginecologia.jpg" class="w-full h-full object-cover" alt="Ginecologia" loading="lazy">
+            </div>
+            <h3 class="text-white text-xl font-bold mb-2">Ginecologia</h3>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">Cuidado especializado em todas as fases da mulher, priorizando o acolhimento e a prevenção.</p>
+            <button onclick="openModal('ginecologia')" class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
+        </div>
+
+        <div class="bg-[#2C5F8D] p-8 rounded-2xl border-2 border-transparent hover:border-[#4A90E2] hover:-translate-y-2 transition-all duration-300 shadow-md">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-white/20 overflow-hidden flex items-center justify-center border-2 border-white/30">
+                <img src="fotos-serviços/Obstetrícia.jpg" class="w-full h-full object-cover" alt="Obstetrícia" loading="lazy">
+            </div>
+            <h3 class="text-white text-xl font-bold mb-2">Obstetrícia</h3>
+            <p class="text-white/90 text-sm leading-relaxed mb-6">Acompanhamento pré-natal completo e humanizado para garantir uma gestação saudável e tranquila.</p>
+            <button onclick="openModal('obstetricia')" class="inline-block bg-[#f1f8d3] text-[#2C5F8D] px-5 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors">Ver Detalhes</button>
+        </div>
+
+    </div>
+    <img src="icons/3.png" class="absolute bottom-0 right-0 w-32 md:w-64 opacity-80 pointer-events-none" alt="Mascote Imunittá">
+</section>
 
     <section class="relative py-16 px-6 animate-slide-bg" id="localizacao"
         style="background-image: linear-gradient(rgba(44, 95, 141, 0.8), rgba(44, 95, 141, 0.8)), url('fotos-clinica/background.jpg');">
