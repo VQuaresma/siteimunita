@@ -165,3 +165,43 @@ const observerOptions = {
     }, observerOptions);
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+
+function toggleDropdown(event) {
+        // Impede o fechamento imediato ao clicar no botão no mobile
+        event.stopPropagation();
+        
+        const menu = document.getElementById('dropdown-menu');
+        const chevron = document.getElementById('chevron-icon');
+        const isVisible = !menu.classList.contains('invisible');
+
+        if (isVisible) {
+            menu.classList.add('opacity-0', 'invisible', 'scale-95');
+            chevron.classList.remove('rotate-180');
+        } else {
+            menu.classList.remove('opacity-0', 'invisible', 'scale-95');
+            menu.classList.add('opacity-100', 'visible', 'scale-100');
+            chevron.classList.add('rotate-180');
+        }
+    }
+
+    // Fecha o menu ao clicar em qualquer link interno ou fora do menu
+    window.addEventListener('click', function(e) {
+        const menu = document.getElementById('dropdown-menu');
+        const chevron = document.getElementById('chevron-icon');
+        
+        if (!document.getElementById('dropdown-consultas').contains(e.target)) {
+            menu.classList.add('opacity-0', 'invisible', 'scale-95');
+            chevron.classList.remove('rotate-180');
+        }
+    });
+
+    // Fecha o menu automaticamente ao clicar em uma especialidade (melhora UX no mobile)
+    document.querySelectorAll('#dropdown-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            const menu = document.getElementById('dropdown-menu');
+            const chevron = document.getElementById('chevron-icon');
+            menu.classList.add('opacity-0', 'invisible', 'scale-95');
+            chevron.classList.remove('rotate-180');
+        });
+    });
